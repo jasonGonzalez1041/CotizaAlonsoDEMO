@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración IA - LogiProformas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .main {
+            padding-top: 70px;
+        }
+        .card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .ai-config-card {
+            border-left: 4px solid #6f42c1;
+        }
+        .model-card {
+            transition: all 0.3s ease;
+        }
+        .model-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .badge-purple {
+            background-color: #6f42c1;
+            color: white;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #6f42c1;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link active">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-4">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1><i class="fa-solid fa-robot me-2"></i> Configuración de Inteligencia Artificial</h1>
+                                <p class="text-muted">Personaliza el comportamiento del asistente IA para proformas</p>
+                            </div>
+                            <button class="btn btn-primary">
+                                <i class="fa-solid fa-floppy-disk me-2"></i> Guardar Cambios
+                            </button>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Estado y Configuración General -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card ai-config-card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-sliders me-2"></i>Configuración General</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Estado del Sistema IA</label>
+                                            <div class="d-flex align-items-center">
+                                                <label class="switch me-3">
+                                                    <input type="checkbox" checked>
+                                                    <span class="slider"></span>
+                                                </label>
+                                                <span class="badge bg-success">Activo</span>
+                                            </div>
+                                            <small class="text-muted">Activa o desactiva todo el módulo de IA</small>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Nivel de Autonomía</label>
+                                            <select class="form-select">
+                                                <option value="1">Asistente (recomendado)</option>
+                                                <option value="2">Semi-autónomo</option>
+                                                <option value="3">Autónomo (avanzado)</option>
+                                            </select>
+                                            <small class="text-muted">Controla cuánta autonomía tiene la IA para tomar decisiones</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Modelo Principal</label>
+                                            <select class="form-select">
+                                                <option value="gpt-4">GPT-4 Turbo (recomendado)</option>
+                                                <option value="gpt-3.5">GPT-3.5 Turbo (rápido)</option>
+                                                <option value="claude">Claude 3 Opus (preciso)</option>
+                                                <option value="mistral">Mistral Large (económico)</option>
+                                            </select>
+                                            <small class="text-muted">Selecciona el modelo de lenguaje principal</small>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Idioma Predeterminado</label>
+                                            <select class="form-select">
+                                                <option selected>Español</option>
+                                                <option>Inglés</option>
+                                                <option>Portugués</option>
+                                                <option>Chino</option>
+                                            </select>
+                                            <small class="text-muted">Idioma para las respuestas generadas</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modelos Disponibles -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-microchip me-2"></i>Modelos Disponibles</h5>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-plus me-1"></i> Añadir Modelo
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <!-- Modelo 1 -->
+                                    <div class="col-md-4">
+                                        <div class="card model-card h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                                    <div>
+                                                        <h5 class="card-title mb-1">GPT-4 Turbo</h5>
+                                                        <span class="badge bg-primary">Predeterminado</span>
+                                                    </div>
+                                                    <span class="badge bg-success">Activo</span>
+                                                </div>
+                                                <p class="card-text small text-muted mb-3">Modelo avanzado para generación de proformas con alta precisión y contexto extendido.</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="badge bg-info text-dark">128k contexto</span>
+                                                        <span class="badge bg-warning text-dark">Precisión: 92%</span>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-outline-primary">Configurar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modelo 2 -->
+                                    <div class="col-md-4">
+                                        <div class="card model-card h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                                    <div>
+                                                        <h5 class="card-title mb-1">Claude 3 Opus</h5>
+                                                        <span class="badge bg-secondary">Alternativo</span>
+                                                    </div>
+                                                    <span class="badge bg-success">Activo</span>
+                                                </div>
+                                                <p class="card-text small text-muted mb-3">Excelente para análisis complejos y cálculos detallados de costos logísticos.</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="badge bg-info text-dark">200k contexto</span>
+                                                        <span class="badge bg-warning text-dark">Precisión: 94%</span>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-outline-primary">Configurar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modelo 3 -->
+                                    <div class="col-md-4">
+                                        <div class="card model-card h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                                    <div>
+                                                        <h5 class="card-title mb-1">Mistral Large</h5>
+                                                        <span class="badge bg-secondary">Alternativo</span>
+                                                    </div>
+                                                    <span class="badge bg-secondary">Inactivo</span>
+                                                </div>
+                                                <p class="card-text small text-muted mb-3">Modelo económico con buen rendimiento para proformas estándar.</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="badge bg-info text-dark">32k contexto</span>
+                                                        <span class="badge bg-warning text-dark">Precisión: 87%</span>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-outline-primary">Configurar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funcionalidades de IA -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-list-check me-2"></i>Funcionalidades Habilitadas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Columna 1 -->
+                                    <div class="col-md-6">
+                                        <!-- Función 1 -->
+                                        <div class="d-flex mb-4">
+                                            <div class="feature-icon bg-primary bg-opacity-10 text-primary">
+                                                <i class="fa-solid fa-bolt"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Generación Rápida</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Permite a la IA generar proformas automáticamente basadas en historial</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Función 2 -->
+                                        <div class="d-flex mb-4">
+                                            <div class="feature-icon bg-success bg-opacity-10 text-success">
+                                                <i class="fa-solid fa-money-bill-trend-up"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Optimización de Costos</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Sugiere rutas y proveedores más económicos</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Función 3 -->
+                                        <div class="d-flex">
+                                            <div class="feature-icon bg-info bg-opacity-10 text-info">
+                                                <i class="fa-solid fa-comment-dots"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Chat Interactivo</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Permite interactuar con la IA para ajustar proformas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Columna 2 -->
+                                    <div class="col-md-6">
+                                        <!-- Función 4 -->
+                                        <div class="d-flex mb-4">
+                                            <div class="feature-icon bg-warning bg-opacity-10 text-warning">
+                                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Detección de Errores</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked>
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Revisa automáticamente posibles errores en proformas</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Función 5 -->
+                                        <div class="d-flex mb-4">
+                                            <div class="feature-icon bg-danger bg-opacity-10 text-danger">
+                                                <i class="fa-solid fa-arrows-rotate"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Actualización Automática</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Actualiza precios y tarifas en tiempo real</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Función 6 -->
+                                        <div class="d-flex">
+                                            <div class="feature-icon bg-purple bg-opacity-10 text-purple">
+                                                <i class="fa-solid fa-lightbulb"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">Sugerencias Inteligentes</h6>
+                                                    <label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <p class="small text-muted mb-0">Ofrece recomendaciones para mejorar las proformas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuración Avanzada -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-code me-2"></i>Configuración Avanzada</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs mb-4" id="advancedConfigTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="prompts-tab" data-bs-toggle="tab" data-bs-target="#prompts" type="button" role="tab">Prompts</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="api-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab">API</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="seguridad-tab" data-bs-toggle="tab" data-bs-target="#seguridad" type="button" role="tab">Seguridad</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab">Logs</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="advancedConfigContent">
+                                    <!-- Pestaña Prompts -->
+                                    <div class="tab-pane fade show active" id="prompts" role="tabpanel">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Prompt Base para Generación</label>
+                                            <textarea class="form-control" rows="5">Eres un experto en logística internacional especializado en la creación de proformas. Genera una proforma detallada basada en los datos proporcionados, siguiendo estos requisitos:
+                                                
+- Usa un tono profesional pero cercano
+- Incluye todos los costos desglosados
+- Destaca los plazos de entrega
+- Ofrece alternativas si es relevante
+- Mantén el formato consistente con nuestras plantillas</textarea>
+                                            <small class="text-muted">Instrucciones base que recibe la IA para generar proformas</small>
+                                        </div>
+                                        <div>
+                                            <label class="form-label fw-bold">Prompt para Validación</label>
+                                            <textarea class="form-control" rows="3">Revisa esta proforma en busca de errores comunes: omisión de costos, inconsistencias en fechas, información de contacto incompleta. Reporta cualquier problema encontrado con sugerencias para corregirlo.</textarea>
+                                            <small class="text-muted">Instrucciones para la validación automática</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña API -->
+                                    <div class="tab-pane fade" id="api" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Clave API</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" value="sk_prod_1234567890abcdef">
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="fa-solid fa-copy"></i>
+                                                        </button>
+                                                    </div>
+                                                    <small class="text-muted">Clave para conectarse a los servicios de IA</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Endpoint</label>
+                                                    <input type="text" class="form-control" value="https://api.logiproformas.com/v1/ia">
+                                                    <small class="text-muted">URL del servicio de IA</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card bg-light">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title"><i class="fa-solid fa-circle-info me-2"></i>Uso de la API</h6>
+                                                        <div class="mb-3">
+                                                            <div class="d-flex justify-content-between">
+                                                                <small class="text-muted">Límite de solicitudes</small>
+                                                                <small>1,000/mes</small>
+                                                            </div>
+                                                            <div class="progress" style="height: 6px;">
+                                                                <div class="progress-bar bg-success" style="width: 45%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <div class="d-flex justify-content-between">
+                                                                <small class="text-muted">Tokens consumidos</small>
+                                                                <small>1.2M/5M</small>
+                                                            </div>
+                                                            <div class="progress" style="height: 6px;">
+                                                                <div class="progress-bar bg-warning" style="width: 24%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div class="d-flex justify-content-between">
+                                                                <small class="text-muted">Modelos activos</small>
+                                                                <small>2/3</small>
+                                                            </div>
+                                                            <div class="progress" style="height: 6px;">
+                                                                <div class="progress-bar bg-info" style="width: 66%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña Seguridad -->
+                                    <div class="tab-pane fade" id="seguridad" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Nivel de Privacidad</label>
+                                                    <select class="form-select">
+                                                        <option>Estándar (datos anonimizados)</option>
+                                                        <option selected>Empresarial (datos internos)</option>
+                                                        <option>Premium (encriptación completa)</option>
+                                                    </select>
+                                                    <small class="text-muted">Controla cómo se manejan los datos sensibles</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <label class="form-label fw-bold">Registro de Datos Sensibles</label>
+                                                        <label class="switch">
+                                                            <input type="checkbox">
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                    </div>
+                                                    <small class="text-muted">Almacena temporalmente datos para mejorar precision</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">IPs Permitidas</label>
+                                                    <textarea class="form-control" rows="3">192.168.1.0/24
+201.131.45.78
+186.154.201.12</textarea>
+                                                    <small class="text-muted">Lista de IPs con acceso a funciones de IA</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña Logs -->
+                                    <div class="tab-pane fade" id="logs" role="tabpanel">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Fecha</th>
+                                                        <th>Modelo</th>
+                                                        <th>Operación</th>
+                                                        <th>Usuario</th>
+                                                        <th>Estado</th>
+                                                        <th>Tokens</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>24/04/2025 09:15</td>
+                                                        <td>GPT-4 Turbo</td>
+                                                        <td>Generación proforma</td>
+                                                        <td>admin</td>
+                                                        <td><span class="badge bg-success">Éxito</span></td>
+                                                        <td>1,245</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>24/04/2025 08:42</td>
+                                                        <td>Claude 3 Opus</td>
+                                                        <td>Validación</td>
+                                                        <td>jperez</td>
+                                                        <td><span class="badge bg-success">Éxito</span></td>
+                                                        <td>876</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>23/04/2025 16:30</td>
+                                                        <td>GPT-4 Turbo</td>
+                                                        <td>Optimización</td>
+                                                        <td>mlopez</td>
+                                                        <td><span class="badge bg-warning text-dark">Parcial</span></td>
+                                                        <td>2,112</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>23/04/2025 11:05</td>
+                                                        <td>GPT-4 Turbo</td>
+                                                        <td>Generación proforma</td>
+                                                        <td>admin</td>
+                                                        <td><span class="badge bg-danger">Error</span></td>
+                                                        <td>543</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                                                </li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">Siguiente</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulación de funcionalidad de switches y botones
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle para mostrar/ocultar clave API
+            document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    if (this.querySelector('.fa-eye')) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            this.querySelector('.fa-eye').classList.replace('fa-eye', 'fa-eye-slash');
+                        } else {
+                            input.type = 'password';
+                            this.querySelector('.fa-eye-slash').classList.replace('fa-eye-slash', 'fa-eye');
+                        }
+                    } else if (this.querySelector('.fa-copy')) {
+                        input.select();
+                        document.execCommand('copy');
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fa-solid fa-check"></i>';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Tooltips (podrías inicializarlos si Bootstrap está cargado)
+            if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

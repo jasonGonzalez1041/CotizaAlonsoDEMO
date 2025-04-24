@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiProformas - Plantillas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            background-color: #212529;
+            min-height: 100vh;
+            padding-top: 56px;
+        }
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            border-radius: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar .nav-link.active {
+            font-weight: 500;
+        }
+        .main {
+            margin-top: 50px;
+            padding-top: 70px;
+        }
+        .template-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .template-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+        .badge-type {
+            font-size: 0.75em;
+            padding: 0.35em 0.65em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (igual al original) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar (igual al original) -->
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link active">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="main col-md-10 p-4">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-8">
+                        <h1><i class="fa-solid fa-file-lines me-2"></i> Plantillas</h1>
+                        <p class="text-muted">Administra tus plantillas de proformas para agilizar el proceso de cotización</p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaPlantillaModal">
+                            <i class="fa-solid fa-plus me-2"></i> Nueva Plantilla
+                        </button>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- Filtros y búsqueda -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Tipo de plantilla</label>
+                                        <select class="form-select">
+                                            <option selected>Todas</option>
+                                            <option>FCL</option>
+                                            <option>LCL</option>
+                                            <option>Aéreo</option>
+                                            <option>Terrestre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Categoría</label>
+                                        <select class="form-select">
+                                            <option selected>Todas</option>
+                                            <option>Importación</option>
+                                            <option>Exportación</option>
+                                            <option>Nacional</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Buscar</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Nombre, descripción...">
+                                            <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listado de plantillas -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-list me-2"></i> Mis Plantillas</h5>
+                                <div>
+                                    <span class="me-2">12 plantillas</span>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-table-cells"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary active"><i class="fa-solid fa-list"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="30%">Nombre</th>
+                                                <th>Tipo</th>
+                                                <th>Categoría</th>
+                                                <th>Última modificación</th>
+                                                <th>Usos</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-file-lines text-primary me-3 fs-4"></i>
+                                                        <div>
+                                                            <h6 class="mb-0">FCL China-Perú</h6>
+                                                            <small class="text-muted">Plantilla estándar para contenedores completos</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-primary badge-type">FCL</span></td>
+                                                <td>Importación</td>
+                                                <td>15/04/2025</td>
+                                                <td>24</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="Usar"><i class="fa-solid fa-play"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-file-lines text-success me-3 fs-4"></i>
+                                                        <div>
+                                                            <h6 class="mb-0">LCL Miami-Lima</h6>
+                                                            <small class="text-muted">Plantilla para cargas parciales desde USA</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success badge-type">LCL</span></td>
+                                                <td>Importación</td>
+                                                <td>10/04/2025</td>
+                                                <td>18</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="Usar"><i class="fa-solid fa-play"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-file-lines text-warning me-3 fs-4"></i>
+                                                        <div>
+                                                            <h6 class="mb-0">Aéreo Europa</h6>
+                                                            <small class="text-muted">Plantilla para envíos urgentes desde Europa</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-warning text-dark badge-type">Aéreo</span></td>
+                                                <td>Importación</td>
+                                                <td>05/04/2025</td>
+                                                <td>12</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="Usar"><i class="fa-solid fa-play"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-file-lines text-info me-3 fs-4"></i>
+                                                        <div>
+                                                            <h6 class="mb-0">Terrestre Nacional</h6>
+                                                            <small class="text-muted">Transporte entre ciudades principales</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-info badge-type">Terrestre</span></td>
+                                                <td>Nacional</td>
+                                                <td>28/03/2025</td>
+                                                <td>8</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="Usar"><i class="fa-solid fa-play"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fa-solid fa-file-lines text-primary me-3 fs-4"></i>
+                                                        <div>
+                                                            <h6 class="mb-0">FCL Perú-Chile</h6>
+                                                            <small class="text-muted">Exportación de productos agrícolas</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-primary badge-type">FCL</span></td>
+                                                <td>Exportación</td>
+                                                <td>20/03/2025</td>
+                                                <td>5</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="Usar"><i class="fa-solid fa-play"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva Plantilla -->
+    <div class="modal fade" id="nuevaPlantillaModal" tabindex="-1" aria-labelledby="nuevaPlantillaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="nuevaPlantillaModalLabel"><i class="fa-solid fa-plus me-2"></i> Nueva Plantilla</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre de la plantilla</label>
+                                <input type="text" class="form-control" placeholder="Ej: FCL China-Perú">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Descripción</label>
+                                <input type="text" class="form-control" placeholder="Breve descripción de su uso">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-select">
+                                    <option selected disabled>Seleccione...</option>
+                                    <option>FCL</option>
+                                    <option>LCL</option>
+                                    <option>Aéreo</option>
+                                    <option>Terrestre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Categoría</label>
+                                <select class="form-select">
+                                    <option selected disabled>Seleccione...</option>
+                                    <option>Importación</option>
+                                    <option>Exportación</option>
+                                    <option>Nacional</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Plantilla base</label>
+                                <select class="form-select">
+                                    <option selected>Crear desde cero</option>
+                                    <option>Usar FCL China-Perú como base</option>
+                                    <option>Usar LCL Miami-Lima como base</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3"><i class="fa-solid fa-sliders me-2"></i> Configuración de campos</h5>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th width="30%">Campo</th>
+                                        <th width="25%">Valor predeterminado</th>
+                                        <th width="20%">Obligatorio</th>
+                                        <th width="25%">Mostrar en</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Origen</td>
+                                        <td><input type="text" class="form-control form-control-sm" placeholder="Ej: Shanghai, China"></td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="origenObligatorio" checked>
+                                                <label class="form-check-label" for="origenObligatorio">Sí</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option selected>Proforma y PDF</option>
+                                                <option>Solo proforma</option>
+                                                <option>Solo PDF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Destino</td>
+                                        <td><input type="text" class="form-control form-control-sm" placeholder="Ej: Callao, Perú"></td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="destinoObligatorio" checked>
+                                                <label class="form-check-label" for="destinoObligatorio">Sí</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option selected>Proforma y PDF</option>
+                                                <option>Solo proforma</option>
+                                                <option>Solo PDF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tipo de mercancía</td>
+                                        <td><input type="text" class="form-control form-control-sm" placeholder="Ej: Electrónicos"></td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="mercanciaObligatorio" checked>
+                                                <label class="form-check-label" for="mercanciaObligatorio">Sí</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option selected>Proforma y PDF</option>
+                                                <option>Solo proforma</option>
+                                                <option>Solo PDF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus me-1"></i> Agregar campo</button>
+                        </div>
+                        
+                        <h5 class="mb-3"><i class="fa-solid fa-file-pdf me-2"></i> Diseño del PDF</h5>
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="plantillaPdf" id="pdfEstandar" checked>
+                                <label class="form-check-label" for="pdfEstandar">Usar diseño estándar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="plantillaPdf" id="pdfPersonalizado">
+                                <label class="form-check-label" for="pdfPersonalizado">Subir diseño personalizado</label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Logo para el PDF</label>
+                            <input type="file" class="form-control">
+                            <small class="text-muted">Recomendado: 300x100 px formato PNG con fondo transparente</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Plantilla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+    </script>
+</body>
+</html>

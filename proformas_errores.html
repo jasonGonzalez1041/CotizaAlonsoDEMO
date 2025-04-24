@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiProformas - Proformas con Errores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center active">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-3">
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <h1><i class="fa-solid fa-circle-exclamation me-2"></i> Proformas con Errores</h1>
+                        <p class="text-muted">Listado de proformas que presentaron errores al procesarse</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Filtros y búsqueda -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-body">
+                                <form class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="fechaDesde" class="form-label">Desde</label>
+                                        <input type="date" class="form-control" id="fechaDesde">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="fechaHasta" class="form-label">Hasta</label>
+                                        <input type="date" class="form-control" id="fechaHasta">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="cliente" class="form-label">Cliente</label>
+                                        <select class="form-select" id="cliente">
+                                            <option selected>Todos</option>
+                                            <option>LogiExpress S.A.</option>
+                                            <option>Transportes Rápidos</option>
+                                            <option>Carga Segura</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="tipoError" class="form-label">Tipo de Error</label>
+                                        <select class="form-select" id="tipoError">
+                                            <option selected>Todos</option>
+                                            <option>Validación</option>
+                                            <option>Formato</option>
+                                            <option>Datos faltantes</option>
+                                            <option>Sistema</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-outline-secondary me-2">
+                                            <i class="fa-solid fa-rotate-right"></i> Reiniciar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa-solid fa-filter"></i> Filtrar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listado de proformas con errores -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">2 Proformas con Errores</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fa-solid fa-file-export"></i> Exportar
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fa-solid fa-plus"></i> Nueva Proforma
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>ID Proforma</th>
+                                                <th>Cliente</th>
+                                                <th>Tipo</th>
+                                                <th>Fecha Error</th>
+                                                <th>Tipo Error</th>
+                                                <th>Intento</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#P-2025-038</td>
+                                                <td>Transportes Rápidos</td>
+                                                <td><span class="badge bg-primary">FCL</span></td>
+                                                <td>19/04/2025 14:22</td>
+                                                <td><span class="badge bg-danger">Validación</span></td>
+                                                <td>3° intento</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver detalles">
+                                                        <i class="fa-solid fa-circle-info"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-warning" title="Reintentar">
+                                                        <i class="fa-solid fa-rotate"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Editar">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#P-2025-037</td>
+                                                <td>Carga Segura</td>
+                                                <td><span class="badge bg-success">LCL</span></td>
+                                                <td>18/04/2025 09:15</td>
+                                                <td><span class="badge bg-warning text-dark">Datos faltantes</span></td>
+                                                <td>1° intento</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver detalles">
+                                                        <i class="fa-solid fa-circle-info"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-warning" title="Reintentar">
+                                                        <i class="fa-solid fa-rotate"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Editar">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalle de errores -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-bug me-2"></i> Detalle de Errores</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-danger">
+                                            <h5 class="alert-heading">#P-2025-038 - Error de Validación</h5>
+                                            <hr>
+                                            <p><strong>Fecha:</strong> 19/04/2025 14:22</p>
+                                            <p><strong>Cliente:</strong> Transportes Rápidos</p>
+                                            <p><strong>Descripción:</strong></p>
+                                            <ul>
+                                                <li>Faltan datos de contacto del cliente</li>
+                                                <li>El campo "Tipo de Contenedor" no coincide con la ruta seleccionada</li>
+                                                <li>El peso total excede el límite permitido para esta ruta</li>
+                                            </ul>
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-sm btn-outline-danger me-2">
+                                                    <i class="fa-solid fa-file-alt me-1"></i> Ver log completo
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fa-solid fa-rotate me-1"></i> Reintentar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-warning">
+                                            <h5 class="alert-heading">#P-2025-037 - Datos Faltantes</h5>
+                                            <hr>
+                                            <p><strong>Fecha:</strong> 18/04/2025 09:15</p>
+                                            <p><strong>Cliente:</strong> Carga Segura</p>
+                                            <p><strong>Descripción:</strong></p>
+                                            <ul>
+                                                <li>No se especificó el tipo de seguro requerido</li>
+                                                <li>Faltan dimensiones para 3 ítems de la carga</li>
+                                                <li>La dirección de entrega no tiene código postal</li>
+                                            </ul>
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-sm btn-outline-warning me-2">
+                                                    <i class="fa-solid fa-file-alt me-1"></i> Ver log completo
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fa-solid fa-rotate me-1"></i> Reintentar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

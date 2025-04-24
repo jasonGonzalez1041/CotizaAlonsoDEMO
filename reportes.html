@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - LogiProformas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        .main {
+            margin-top: 50px;
+            padding-top: 70px;
+        }
+        .card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .filter-card {
+            background-color: #f8f9fa;
+        }
+        .report-card {
+            border-left: 4px solid #3498db;
+        }
+        .badge-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link active">
+                                <i class="fa-solid fa-chart-line me-2 "></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-4">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1><i class="fa-solid fa-chart-line me-2"></i> Reportes Analíticos</h1>
+                                <p class="text-muted">Análisis detallado del rendimiento de proformas</p>
+                            </div>
+                            <button class="btn btn-primary">
+                                <i class="fa-solid fa-download me-2"></i> Exportar Reporte
+                            </button>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card filter-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fa-solid fa-filter me-2"></i>Filtros</h5>
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <label for="dateRange" class="form-label">Rango de Fechas</label>
+                                            <select class="form-select" id="dateRange">
+                                                <option selected>Últimos 7 días</option>
+                                                <option>Este mes</option>
+                                                <option>Mes pasado</option>
+                                                <option>Últimos 3 meses</option>
+                                                <option>Personalizado</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="clientType" class="form-label">Tipo de Cliente</label>
+                                            <select class="form-select" id="clientType">
+                                                <option selected>Todos</option>
+                                                <option>Corporativo</option>
+                                                <option>PYME</option>
+                                                <option>Individual</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="serviceType" class="form-label">Tipo de Servicio</label>
+                                            <select class="form-select" id="serviceType">
+                                                <option selected>Todos</option>
+                                                <option>FCL</option>
+                                                <option>LCL</option>
+                                                <option>Aéreo</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex align-items-end">
+                                            <button type="submit" class="btn btn-primary w-100">
+                                                <i class="fa-solid fa-magnifying-glass me-2"></i>Aplicar Filtros
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Estadístico -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-simple me-2"></i>Resumen Estadístico</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 text-center border-end">
+                                        <h3 class="text-primary">128</h3>
+                                        <p class="text-muted mb-0">Total Proformas</p>
+                                        <small class="text-success"><i class="fa-solid fa-arrow-up"></i> 12% vs. periodo anterior</small>
+                                    </div>
+                                    <div class="col-md-3 text-center border-end">
+                                        <h3 class="text-success">S/ 248,750</h3>
+                                        <p class="text-muted mb-0">Valor Total</p>
+                                        <small class="text-success"><i class="fa-solid fa-arrow-up"></i> 18% vs. periodo anterior</small>
+                                    </div>
+                                    <div class="col-md-3 text-center border-end">
+                                        <h3 class="text-warning">78%</h3>
+                                        <p class="text-muted mb-0">Tasa de Aprobación</p>
+                                        <small class="text-danger"><i class="fa-solid fa-arrow-down"></i> 5% vs. periodo anterior</small>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <h3 class="text-info">2.4 días</h3>
+                                        <p class="text-muted mb-0">Tiempo Promedio</p>
+                                        <small class="text-success"><i class="fa-solid fa-arrow-down"></i> 0.8 días vs. periodo anterior</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos Principales -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="card h-100">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-column me-2"></i>Proformas por Mes</h5>
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-secondary active">Cantidad</button>
+                                    <button class="btn btn-outline-secondary">Valor</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container" style="position: relative; height:300px;">
+                                    <canvas id="monthlyChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-pie me-2"></i>Distribución por Tipo</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container" style="position: relative; height:250px;">
+                                    <canvas id="typeDistributionChart"></canvas>
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <span class="badge bg-primary me-2"><i class="fa-solid fa-square"></i> FCL (42%)</span>
+                                    <span class="badge bg-success me-2"><i class="fa-solid fa-square"></i> LCL (35%)</span>
+                                    <span class="badge bg-warning text-dark"><i class="fa-solid fa-square"></i> Aéreo (23%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de Reportes y Gráfico Secundario -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-table me-2"></i>Detalle por Cliente</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        Ordenar por
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Proformas (Mayor a Menor)</a></li>
+                                        <li><a class="dropdown-item" href="#">Proformas (Menor a Mayor)</a></li>
+                                        <li><a class="dropdown-item" href="#">Valor (Mayor a Menor)</a></li>
+                                        <li><a class="dropdown-item" href="#">Valor (Menor a Mayor)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Cliente</th>
+                                                <th>Proformas</th>
+                                                <th>Valor Total</th>
+                                                <th>Tasa Aprob.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>LogiExpress S.A.</td>
+                                                <td>24</td>
+                                                <td>S/ 48,200</td>
+                                                <td>
+                                                    <div class="progress" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    <small>85%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Transportes Rápidos</td>
+                                                <td>18</td>
+                                                <td>S/ 39,750</td>
+                                                <td>
+                                                    <div class="progress" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 78%"></div>
+                                                    </div>
+                                                    <small>78%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carga Segura</td>
+                                                <td>12</td>
+                                                <td>S/ 28,400</td>
+                                                <td>
+                                                    <div class="progress" style="height: 6px;">
+                                                        <div class="progress-bar bg-warning" style="width: 65%"></div>
+                                                    </div>
+                                                    <small>65%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>EnvíaRápido</td>
+                                                <td>8</td>
+                                                <td>S/ 15,300</td>
+                                                <td>
+                                                    <div class="progress" style="height: 6px;">
+                                                        <div class="progress-bar bg-danger" style="width: 50%"></div>
+                                                    </div>
+                                                    <small>50%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Otros (5 clientes)</td>
+                                                <td>66</td>
+                                                <td>S/ 117,100</td>
+                                                <td>
+                                                    <div class="progress" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 82%"></div>
+                                                    </div>
+                                                    <small>82%</small>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-line me-2"></i>Tendencia de Aprobación</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container" style="position: relative; height:300px;">
+                                    <canvas id="approvalTrendChart"></canvas>
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <span class="badge bg-success me-2"><i class="fa-solid fa-square"></i> Aprobadas</span>
+                                    <span class="badge bg-danger me-2"><i class="fa-solid fa-square"></i> Rechazadas</span>
+                                    <span class="badge bg-warning text-dark"><i class="fa-solid fa-square"></i> Pendientes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reportes Predefinidos -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h4 class="mb-3"><i class="fa-solid fa-file-lines me-2"></i>Reportes Predefinidos</h4>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card report-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="card-title">Eficiencia Operativa</h5>
+                                                <p class="card-text small text-muted">Tiempos de respuesta y productividad</p>
+                                            </div>
+                                            <i class="fa-solid fa-stopwatch text-primary fa-2x"></i>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline-primary mt-3">Generar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card report-card h-100" style="border-left-color: #198754;">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="card-title">Rentabilidad</h5>
+                                                <p class="card-text small text-muted">Margen por servicio y cliente</p>
+                                            </div>
+                                            <i class="fa-solid fa-coins text-success fa-2x"></i>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline-success mt-3">Generar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card report-card h-100" style="border-left-color: #fd7e14;">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 class="card-title">Clientes</h5>
+                                                <p class="card-text small text-muted">Actividad y comportamiento</p>
+                                            </div>
+                                            <i class="fa-solid fa-users text-warning fa-2x"></i>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline-warning mt-3">Generar</a>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Gráfico mensual
+        const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+        const monthlyChart = new Chart(monthlyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [{
+                    label: 'Proformas',
+                    data: [15, 22, 18, 25, 20, 28, 32, 30, 26, 24, 20, 18],
+                    backgroundColor: '#0d6efd',
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Gráfico de distribución por tipo
+        const typeCtx = document.getElementById('typeDistributionChart').getContext('2d');
+        const typeChart = new Chart(typeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['FCL', 'LCL', 'Aéreo'],
+                datasets: [{
+                    data: [42, 35, 23],
+                    backgroundColor: [
+                        '#0d6efd',
+                        '#198754',
+                        '#ffc107'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+
+        // Gráfico de tendencia de aprobación
+        const trendCtx = document.getElementById('approvalTrendChart').getContext('2d');
+        const trendChart = new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: 'Aprobadas',
+                        data: [12, 18, 15, 20, 16, 22, 25, 24, 20, 19, 16, 14],
+                        borderColor: '#198754',
+                        backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Rechazadas',
+                        data: [2, 3, 2, 4, 3, 5, 6, 5, 5, 4, 3, 3],
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Pendientes',
+                        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

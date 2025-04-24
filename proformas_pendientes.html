@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CotizAlonso - Sistema de Proformas con IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center active">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>Proformas Pendientes</h1>
+                        <p>Revise y apruebe las proformas generadas por IA antes de ser enviadas.</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-filter me-2"></i> Filtros</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-success"><i class="fa-solid fa-check me-1"></i> Aprobar Todas</button>
+                                    <button class="btn btn-sm btn-danger ms-2"><i class="fa-solid fa-xmark me-1"></i> Rechazar Seleccionadas</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="clienteSelect">
+                                                <option selected>Todos</option>
+                                                <option>LogiExpress S.A.</option>
+                                                <option>Transportes Rápidos</option>
+                                                <option>Carga Segura</option>
+                                            </select>
+                                            <label for="clienteSelect">Cliente</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="prioridadSelect">
+                                                <option selected>Todas</option>
+                                                <option>Alta</option>
+                                                <option>Media</option>
+                                                <option>Baja</option>
+                                            </select>
+                                            <label for="prioridadSelect">Prioridad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="iaSelect">
+                                                <option selected>Todos</option>
+                                                <option>Alta confianza</option>
+                                                <option>Media confianza</option>
+                                                <option>Baja confianza</option>
+                                            </select>
+                                            <label for="iaSelect">Estado IA</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="fechaInput">
+                                            <label for="fechaInput">Fecha</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="mb-3">Lista de Proformas <span class="badge bg-secondary">5</span></h4>
+                       
+                        <div class="proforma-item priority-high">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="mb-2">Proforma #P-2025-042</h5>
+                                    <p class="mb-1"><strong>Cliente:</strong> LogiExpress S.A.</p>
+                                    <p class="mb-1"><strong>Servicio:</strong> Transporte internacional</p>
+                                    <p class="mb-1"><small class="text-muted">Generado: Hoy 10:45 AM</small></p>
+                                </div>
+                                <span class="badge bg-danger">Alta</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div>
+                                    <small>Confianza IA:
+                                        <div class="ai-confidence ms-1 d-inline-block">
+                                            <div class="ai-confidence-level" style="width: 85%"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check1">
+                                    <label class="form-check-label" for="check1">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proforma-item priority-medium">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="mb-2">Proforma #P-2025-041</h5>
+                                    <p class="mb-1"><strong>Cliente:</strong> Transportes Rápidos</p>
+                                    <p class="mb-1"><strong>Servicio:</strong> Logística local</p>
+                                    <p class="mb-1"><small class="text-muted">Generado: Hoy 9:30 AM</small></p>
+                                </div>
+                                <span class="badge bg-warning text-dark">Media</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div>
+                                    <small>
+                                        Confianza IA:
+                                        <div class="ai-confidence ms-1 d-inline-block">
+                                            <div class="ai-confidence-level" style="width: 72%"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check2">
+                                    <label class="form-check-label" for="check2">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proforma-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="mb-2">Proforma #P-2025-040</h5>
+                                    <p class="mb-1"><strong>Cliente:</strong> Carga Segura</p>
+                                    <p class="mb-1"><strong>Servicio:</strong> Almacenaje</p>
+                                    <p class="mb-1"><small class="text-muted">Generado: Ayer 16:20 PM</small></p>
+                                </div>
+                                <span class="badge bg-success">Baja</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div>
+                                    <small>
+                                        Confianza IA:
+                                        <div class="ai-confidence ms-1 d-inline-block">
+                                            <div class="ai-confidence-level" style="width: 90%"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check3">
+                                    <label class="form-check-label" for="check3">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proforma-item priority-medium">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="mb-2">Proforma #P-2025-039</h5>
+                                    <p class="mb-1"><strong>Cliente:</strong> EnvíaRápido</p>
+                                    <p class="mb-1"><strong>Servicio:</strong> Courier Internacional</p>
+                                    <p class="mb-1"><small class="text-muted">Generado: Ayer 14:15 PM</small></p>
+                                </div>
+                                <span class="badge bg-warning text-dark">Media</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div>
+                                    <small>
+                                        Confianza IA:
+                                        <div class="ai-confidence ms-1 d-inline-block">
+                                            <div class="ai-confidence-level" style="width: 65%"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check4">
+                                    <label class="form-check-label" for="check4">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="proforma-item priority-high">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="mb-2">Proforma #P-2025-038</h5>
+                                    <p class="mb-1"><strong>Cliente:</strong> LogiTech Solutions</p>
+                                    <p class="mb-1"><strong>Servicio:</strong> Transporte multimodal</p>
+                                    <p class="mb-1"><small class="text-muted">Generado: 20/04/2025</small></p>
+                                </div>
+                                <span class="badge bg-danger">Alta</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div>
+                                    <small>
+                                        Confianza IA:
+                                        <div class="ai-confidence ms-1 d-inline-block">
+                                            <div class="ai-confidence-level" style="width: 60%"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check5">
+                                    <label class="form-check-label" for="check5">Seleccionar</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="panel">
+                            <div class="panel-heading d-flex justify-content-between align-items-center">
+                                <h3 class="panel-title">Revisión de Proforma #P-2025-042</h3>
+                                <div>
+                                    <span class="label label-danger">Prioridad Alta</span>
+                                    <span class="label label-success">Confianza IA 85%</span>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-tabs" id="proformaTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview" type="button" role="tab" aria-controls="preview" aria-selected="true">Vista Previa</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Detalles</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="ai-analysis-tab" data-bs-toggle="tab" data-bs-target="#ai-analysis" type="button" role="tab" aria-controls="ai-analysis" aria-selected="false">Análisis IA</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">Historial</button>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content pt-3" id="proformaTabContent">
+                                    <div class="tab-pane fade show active" id="preview" role="tabpanel" aria-labelledby="preview-tab">
+                                        <div class="ai-suggestion">
+                                            <i class="fa-solid fa-lightbulb me-2"></i> <strong>Sugerencia IA:</strong> El asunto del correo podría optimizarse para mejorar la tasa de apertura.
+                                            <button class="btn btn-xs btn-ai float-end">Aplicar</button>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Asunto del correo:</label>
+                                            <input type="text" class="form-control" value="Proforma de Servicios Logísticos Internacionales - LogiExpress S.A.">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Destinatarios:</label>
+                                            <input type="text" class="form-control" value="carlos.rodriguez@logiexpress.com, finanzas@logiexpress.com">
+                                        </div>
+
+                                        <div class="email-preview">
+                                            <h4>Estimado Cliente LogiExpress S.A.,</h4>
+                                            <p>Esperamos que se encuentre bien. Adjunto enviamos la proforma solicitada para los servicios de transporte internacional según lo conversado.</p>
+                                           
+                                            <div class="well">
+                                                <h4>Detalles de la Proforma #P-2025-042:</h4>
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                        <th>Servicio</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio Unitario</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transporte Internacional (Madrid-Lima)</td>
+                                                        <td>1</td>
+                                                        <td>$3,500.00</td>
+                                                        <td>$3,500.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Seguro de Carga</td>
+                                                        <td>1</td>
+                                                        <td>$850.00</td>
+                                                        <td>$850.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Trámites Aduaneros</td>
+                                                        <td>1</td>
+                                                        <td>$450.00</td>
+                                                        <td>$450.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">Subtotal:</th>
+                                                        <td>$4,800.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">IVA (18%):</th>
+                                                        <td>$864.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">Total:</th>
+                                                        <td><strong>$5,664.00</strong></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <p>Esta proforma tiene una validez de 15 días calendario. Para cualquier consulta adicional no dude en contactarnos.</p>
+                                           
+                                            <p>Saludos cordiales,</p>
+                                            <p><strong>Departamento Comercial</strong><br>
+                                            Su Empresa S.A.<br>
+                                            Tel: +51 123 456 789<br>
+                                            Email: comercial@suempresa.com</p>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label class="form-label">Archivos adjuntos:</label>
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div><i class="fa-solid fa-file-pdf me-2"></i> Proforma_P-2025-042.pdf</div>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye me-1"></i> Ver</button>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div><i class="fa-solid fa-file-excel me-2"></i> Desglose_Costos.xlsx</div>
+                                                    <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye me-1"></i> Ver</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                        <h4>Información del Cliente</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Empresa:</label>
+                                                    <input type="text" class="form-control" value="LogiExpress S.A." readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Contacto:</label>
+                                                    <input type="text" class="form-control" value="Carlos Rodríguez" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Email:</label>
+                                                    <input type="text" class="form-control" value="carlos.rodriguez@logiexpress.com" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Teléfono:</label>
+                                                    <input type="text" class="form-control" value="+51 987 654 321" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="mt-4">Detalles del Servicio</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tipo de Servicio:</label>
+                                                    <input type="text" class="form-control" value="Transporte Internacional (FCL)" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Origen:</label>
+                                                    <input type="text" class="form-control" value="Madrid, España" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Destino:</label>
+                                                    <input type="text" class="form-control" value="Lima, Perú" readonly>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fecha Estimada:</label>
+                                                    <input type="text" class="form-control" value="15/05/2025" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Mercancía:</label>
+                                            <textarea class="form-control" rows="3" readonly>Equipos electrónicos - 2 contenedores 40' (Peso total: 18,000 kg)</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="ai-analysis" role="tabpanel" aria-labelledby="ai-analysis-tab">
+                                        <div class="alert alert-info">
+                                            <i class="fa-solid fa-circle-info me-2"></i> Análisis realizado por el modelo IA GPT-4 el 24/04/2025 a las 10:47 AM
+                                        </div>
+
+                                        <h4>Clasificación Automática</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-header bg-light">
+                                                        <strong>Tipo de Servicio</strong>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p>Identificado como: <span class="badge bg-primary">FCL (Full Container Load)</span></p>
+                                                        <p>Confianza: 92%</p>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-3">
+                                                    <div class="card-header bg-light">
+                                                        <strong>Prioridad</strong>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p>Clasificado como: <span class="badge bg-danger">Alta Prioridad</span></p>
+                                                        <p>Factores considerados: cliente premium, urgencia en fechas</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4>Recomendaciones de Precios</h4>
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-light">
+                                                <strong>Análisis Competitivo</strong>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Basado en cotizaciones históricas similares:</p>
+                                                <ul>
+                                                    <li>Precio promedio para esta ruta: $3,800 - $4,200</li>
+                                                    <li>Nuestra cotización está <strong>8% debajo</strong> del promedio del mercado</li>
+                                                    <li>Margen de ganancia estimado: 22% (dentro de rangos óptimos)</li>
+                                                </ul>
+                                                <div class="alert alert-success">
+                                                    <i class="fa-solid fa-thumbs-up me-2"></i> La cotización es competitiva y con buen margen según análisis IA
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4>Posibles Riesgos</h4>
+                                        <div class="alert alert-warning">
+                                            <i class="fa-solid fa-triangle-exclamation me-2"></i> <strong>Atención:</strong> Incremento reciente en precios de combustible podría afectar costos operativos. Considerar cláusula de ajuste.
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Solicitud recibida</strong><br>
+                                                        <small class="text-muted">23/04/2025 14:30 - Cliente: LogiExpress S.A.</small>
+                                                    </div>
+                                                    <span class="badge bg-secondary">Nuevo</span>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Clasificado por IA</strong><br>
+                                                        <small class="text-muted">23/04/2025 14:32 - Sistema automático</small>
+                                                    </div>
+                                                    <span class="badge bg-info">Procesado</span>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Consulta a agente en España</strong><br>
+                                                        <small class="text-muted">23/04/2025 14:35 - Enviado a: contacto@aduanases.com</small>
+                                                    </div>
+                                                    <span class="badge bg-warning">Pendiente</span>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Respuesta recibida</strong><br>
+                                                        <small class="text-muted">24/04/2025 09:15 - De: Aduanas España</small>
+                                                    </div>
+                                                    <span class="badge bg-success">Completado</span>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Proforma generada</strong><br>
+                                                        <small class="text-muted">24/04/2025 10:45 - Por: Sistema IA</small>
+                                                    </div>
+                                                    <span class="badge bg-primary">Listo</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer text-end">
+                                <button class="btn btn-success me-2"><i class="fa-solid fa-check me-1"></i> Aprobar y Enviar</button>
+                                <button class="btn btn-warning me-2"><i class="fa-solid fa-pen me-1"></i> Editar</button>
+                                <button class="btn btn-danger"><i class="fa-solid fa-xmark me-1"></i> Rechazar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        var tabElms = document.querySelectorAll('button[data-bs-toggle="tab"]')
+        tabElms.forEach(function (tabEl) {
+            tabEl.addEventListener('click', function (event) {
+                event.preventDefault()
+                var tab = new bootstrap.Tab(tabEl)
+                tab.show()
+            })
+        });
+    </script>
+</body>
+</html>

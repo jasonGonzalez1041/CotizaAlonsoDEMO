@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CotizAlonso - Mantenimiento de Clientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar cliente..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link active">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-3">
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <h1><i class="fa-solid fa-users me-2"></i> Mantenimiento de Clientes</h1>
+                        <p class="text-muted">Administración del registro de clientes y sus datos</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Filtros y acciones -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex">
+                                        <div class="dropdown me-2">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-filter"></i> Filtrar por
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="#">Todos</a></li>
+                                                <li><a class="dropdown-item" href="#">Activos</a></li>
+                                                <li><a class="dropdown-item" href="#">Inactivos</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="#">Frecuentes</a></li>
+                                                <li><a class="dropdown-item" href="#">Nuevos</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-sort"></i> Ordenar por
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                <li><a class="dropdown-item" href="#">Nombre A-Z</a></li>
+                                                <li><a class="dropdown-item" href="#">Nombre Z-A</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                                                <li><a class="dropdown-item" href="#">Más antiguos</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal">
+                                        <i class="fa-solid fa-plus me-1"></i> Nuevo Cliente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listado de clientes -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">32 Clientes Registrados</h5>
+                                <div class="d-flex">
+                                    <div class="input-group input-group-sm me-2" style="width: 200px;">
+                                        <input type="text" class="form-control" placeholder="Buscar cliente...">
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-search"></i></button>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fa-solid fa-file-export"></i> Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="5%">#</th>
+                                                <th width="25%">Nombre/Razón Social</th>
+                                                <th width="15%">RUC/DNI</th>
+                                                <th width="20%">Contacto</th>
+                                                <th width="15%">Teléfono</th>
+                                                <th width="10%">Estado</th>
+                                                <th width="10%">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="https://ui-avatars.com/api/?name=LogiExpress&background=0D6EFD&color=fff" alt="Logo" class="rounded-circle" width="32">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <strong>LogiExpress S.A.</strong>
+                                                            <div class="text-muted small">logiexpress@example.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>20123456789</td>
+                                                <td>Juan Pérez<br><small class="text-muted">Gerente Logística</small></td>
+                                                <td>(01) 987654321</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="https://ui-avatars.com/api/?name=Transportes+Rapidos&background=198754&color=fff" alt="Logo" class="rounded-circle" width="32">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <strong>Transportes Rápidos</strong>
+                                                            <div class="text-muted small">contacto@transportesrapidos.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>20198765432</td>
+                                                <td>María Gómez<br><small class="text-muted">Jefa de Compras</small></td>
+                                                <td>(01) 987123654</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="https://ui-avatars.com/api/?name=Carga+Segura&background=FFC107&color=000" alt="Logo" class="rounded-circle" width="32">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <strong>Carga Segura</strong>
+                                                            <div class="text-muted small">ventas@cargasegura.com.pe</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>20345678901</td>
+                                                <td>Carlos Rojas<br><small class="text-muted">Director</small></td>
+                                                <td>(01) 987456123</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="https://ui-avatars.com/api/?name=Envia+Rapido&background=DC3545&color=fff" alt="Logo" class="rounded-circle" width="32">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <strong>EnvíaRápido</strong>
+                                                            <div class="text-muted small">info@enviarapido.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>20456789012</td>
+                                                <td>Ana Torres<br><small class="text-muted">Gerente Comercial</small></td>
+                                                <td>(01) 963852741</td>
+                                                <td><span class="badge bg-secondary">Inactivo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <img src="https://ui-avatars.com/api/?name=Almacenes+Peru&background=6F42C1&color=fff" alt="Logo" class="rounded-circle" width="32">
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2">
+                                                            <strong>Almacenes Perú</strong>
+                                                            <div class="text-muted small">compras@almacenesperu.com</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>20567890123</td>
+                                                <td>Luis Mendoza<br><small class="text-muted">Jefe de Importaciones</small></td>
+                                                <td>(01) 951753852</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estadísticas de clientes -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-pie me-2"></i> Estadísticas de Clientes</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Total Clientes</h6>
+                                                <h3 class="mb-0">32</h3>
+                                            </div>
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-users text-primary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Activos</h6>
+                                                <h3 class="mb-0">28 <small class="text-success">(87.5%)</small></h3>
+                                            </div>
+                                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-user-check text-success fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Inactivos</h6>
+                                                <h3 class="mb-0">4 <small class="text-danger">(12.5%)</small></h3>
+                                            </div>
+                                            <div class="bg-secondary bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-user-slash text-secondary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Clientes Nuevos</h6>
+                                                <h3 class="mb-0">5 <small class="text-info">(este mes)</small></h3>
+                                            </div>
+                                            <div class="bg-info bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-user-plus text-info fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="chart-container" style="position: relative; height:300px;">
+                                            <canvas id="clientesChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Cliente -->
+    <div class="modal fade" id="nuevoClienteModal" tabindex="-1" aria-labelledby="nuevoClienteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="nuevoClienteModalLabel"><i class="fa-solid fa-user-plus me-2"></i> Nuevo Cliente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="datos-tab" data-bs-toggle="tab" data-bs-target="#datos" type="button" role="tab" aria-controls="datos" aria-selected="true">Datos Principales</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contacto-tab" data-bs-toggle="tab" data-bs-target="#contacto" type="button" role="tab" aria-controls="contacto" aria-selected="false">Contactos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="adicional-tab" data-bs-toggle="tab" data-bs-target="#adicional" type="button" role="tab" aria-controls="adicional" aria-selected="false">Información Adicional</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="datos" role="tabpanel" aria-labelledby="datos-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="razonSocial" class="form-label">Razón Social/Nombre</label>
+                                        <input type="text" class="form-control" id="razonSocial" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ruc" class="form-label">RUC/DNI</label>
+                                        <input type="text" class="form-control" id="ruc" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefono" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="direccion" class="form-label">Dirección</label>
+                                        <input type="text" class="form-control" id="direccion">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pais" class="form-label">País</label>
+                                        <select class="form-select" id="pais">
+                                            <option selected>Perú</option>
+                                            <option>Chile</option>
+                                            <option>Colombia</option>
+                                            <option>Ecuador</option>
+                                            <option>México</option>
+                                            <option>Estados Unidos</option>
+                                            <option>China</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="estado" class="form-label">Estado</label>
+                                        <select class="form-select" id="estado">
+                                            <option selected value="activo">Activo</option>
+                                            <option value="inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contacto-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="contactoNombre" class="form-label">Nombre Contacto Principal</label>
+                                        <input type="text" class="form-control" id="contactoNombre">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="contactoCargo" class="form-label">Cargo</label>
+                                        <input type="text" class="form-control" id="contactoCargo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="contactoEmail" class="form-label">Email Contacto</label>
+                                        <input type="email" class="form-control" id="contactoEmail">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="contactoTelefono" class="form-label">Teléfono Contacto</label>
+                                        <input type="tel" class="form-control" id="contactoTelefono">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-plus me-1"></i> Agregar otro contacto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="adicional" role="tabpanel" aria-labelledby="adicional-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="tipoCliente" class="form-label">Tipo de Cliente</label>
+                                        <select class="form-select" id="tipoCliente">
+                                            <option selected>Regular</option>
+                                            <option>Frecuente</option>
+                                            <option>VIP</option>
+                                            <option>Corporativo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="categoria" class="form-label">Categoría</label>
+                                        <select class="form-select" id="categoria">
+                                            <option selected>Transporte</option>
+                                            <option>Importador</option>
+                                            <option>Exportador</option>
+                                            <option>Distribuidor</option>
+                                            <option>Manufactura</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="observaciones" class="form-label">Observaciones</label>
+                                        <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="envioPromociones">
+                                            <label class="form-check-label" for="envioPromociones">
+                                                Acepta recibir promociones y ofertas
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Cliente -->
+    <div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="editarClienteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editarClienteModalLabel"><i class="fa-solid fa-user-edit me-2"></i> Editar Cliente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <ul class="nav nav-tabs mb-4" id="editTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="edit-datos-tab" data-bs-toggle="tab" data-bs-target="#edit-datos" type="button" role="tab" aria-controls="edit-datos" aria-selected="true">Datos Principales</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-contacto-tab" data-bs-toggle="tab" data-bs-target="#edit-contacto" type="button" role="tab" aria-controls="edit-contacto" aria-selected="false">Contactos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-adicional-tab" data-bs-toggle="tab" data-bs-target="#edit-adicional" type="button" role="tab" aria-controls="edit-adicional" aria-selected="false">Información Adicional</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-historial-tab" data-bs-toggle="tab" data-bs-target="#edit-historial" type="button" role="tab" aria-controls="edit-historial" aria-selected="false">Historial</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="editTabContent">
+                            <div class="tab-pane fade show active" id="edit-datos" role="tabpanel" aria-labelledby="edit-datos-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="edit-razonSocial" class="form-label">Razón Social/Nombre</label>
+                                        <input type="text" class="form-control" id="edit-razonSocial" value="LogiExpress S.A." required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-ruc" class="form-label">RUC/DNI</label>
+                                        <input type="text" class="form-control" id="edit-ruc" value="20123456789" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="edit-email" value="logiexpress@example.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-telefono" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="edit-telefono" value="(01) 987654321">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="edit-direccion" class="form-label">Dirección</label>
+                                        <input type="text" class="form-control" id="edit-direccion" value="Av. Javier Prado 1234, San Isidro">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-pais" class="form-label">País</label>
+                                        <select class="form-select" id="edit-pais">
+                                            <option selected>Perú</option>
+                                            <option>Chile</option>
+                                            <option>Colombia</option>
+                                            <option>Ecuador</option>
+                                            <option>México</option>
+                                            <option>Estados Unidos</option>
+                                            <option>China</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-estado" class="form-label">Estado</label>
+                                        <select class="form-select" id="edit-estado">
+                                            <option selected value="activo">Activo</option>
+                                            <option value="inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-contacto" role="tabpanel" aria-labelledby="edit-contacto-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="edit-contactoNombre" class="form-label">Nombre Contacto Principal</label>
+                                        <input type="text" class="form-control" id="edit-contactoNombre" value="Juan Pérez">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-contactoCargo" class="form-label">Cargo</label>
+                                        <input type="text" class="form-control" id="edit-contactoCargo" value="Gerente Logística">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-contactoEmail" class="form-label">Email Contacto</label>
+                                        <input type="email" class="form-control" id="edit-contactoEmail" value="jperez@logiexpress.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-contactoTelefono" class="form-label">Teléfono Contacto</label>
+                                        <input type="tel" class="form-control" id="edit-contactoTelefono" value="987654321">
+                                    </div>
+                                    <div class="col-12">
+                                        <h6 class="mt-3 mb-2">Otros contactos</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Cargo</th>
+                                                        <th>Email</th>
+                                                        <th>Teléfono</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>María López</td>
+                                                        <td>Asistente</td>
+                                                        <td>mlopez@logiexpress.com</td>
+                                                        <td>987123456</td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-pen"></i></button>
+                                                            <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary mt-2">
+                                            <i class="fa-solid fa-plus me-1"></i> Agregar otro contacto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-adicional" role="tabpanel" aria-labelledby="edit-adicional-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="edit-tipoCliente" class="form-label">Tipo de Cliente</label>
+                                        <select class="form-select" id="edit-tipoCliente">
+                                            <option selected>Frecuente</option>
+                                            <option>Regular</option>
+                                            <option>VIP</option>
+                                            <option>Corporativo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-categoria" class="form-label">Categoría</label>
+                                        <select class="form-select" id="edit-categoria">
+                                            <option selected>Transporte</option>
+                                            <option>Importador</option>
+                                            <option>Exportador</option>
+                                            <option>Distribuidor</option>
+                                            <option>Manufactura</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="edit-observaciones" class="form-label">Observaciones</label>
+                                        <textarea class="form-control" id="edit-observaciones" rows="3">Cliente preferencial con descuento del 10% en todos los servicios</textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="edit-envioPromociones" checked>
+                                            <label class="form-check-label" for="edit-envioPromociones">
+                                                Acepta recibir promociones y ofertas
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-historial" role="tabpanel" aria-labelledby="edit-historial-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Acción</th>
+                                                <th>Usuario</th>
+                                                <th>Detalles</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>15/04/2023</td>
+                                                <td>Actualización</td>
+                                                <td>admin</td>
+                                                <td>Cambió tipo de cliente a Frecuente</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10/03/2023</td>
+                                                <td>Proforma enviada</td>
+                                                <td>ventas1</td>
+                                                <td>Proforma #PF-2023-0456</td>
+                                            </tr>
+                                            <tr>
+                                                <td>28/02/2023</td>
+                                                <td>Actualización</td>
+                                                <td>admin</td>
+                                                <td>Agregó contacto adicional</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15/01/2023</td>
+                                                <td>Registro</td>
+                                                <td>admin</td>
+                                                <td>Cliente creado</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Gráfico de clientes
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('clientesChart').getContext('2d');
+            const clientesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [{
+                        label: 'Clientes nuevos',
+                        data: [2, 3, 5, 4, 6, 4, 3, 5, 7, 4, 5, 6],
+                        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                        borderColor: 'rgba(13, 110, 253, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiProformas - Proformas Enviadas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center active">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-3">
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <h1><i class="fa-solid fa-paper-plane me-2"></i> Proformas Enviadas</h1>
+                        <p class="text-muted">Listado de todas las proformas enviadas a clientes</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Filtros y búsqueda -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-body">
+                                <form class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="fechaDesde" class="form-label">Desde</label>
+                                        <input type="date" class="form-control" id="fechaDesde">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="fechaHasta" class="form-label">Hasta</label>
+                                        <input type="date" class="form-control" id="fechaHasta">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="cliente" class="form-label">Cliente</label>
+                                        <select class="form-select" id="cliente">
+                                            <option selected>Todos</option>
+                                            <option>LogiExpress S.A.</option>
+                                            <option>Transportes Rápidos</option>
+                                            <option>Carga Segura</option>
+                                            <option>EnvíaRápido</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="tipoServicio" class="form-label">Tipo de Servicio</label>
+                                        <select class="form-select" id="tipoServicio">
+                                            <option selected>Todos</option>
+                                            <option>FCL</option>
+                                            <option>LCL</option>
+                                            <option>Aéreo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-outline-secondary me-2">
+                                            <i class="fa-solid fa-rotate-right"></i> Reiniciar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa-solid fa-filter"></i> Filtrar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listado de proformas enviadas -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">28 Proformas Encontradas</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="fa-solid fa-file-export"></i> Exportar
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fa-solid fa-plus"></i> Nueva Proforma
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>ID Proforma</th>
+                                                <th>Cliente</th>
+                                                <th>Tipo</th>
+                                                <th>Ruta</th>
+                                                <th>Fecha Envío</th>
+                                                <th>Estado</th>
+                                                <th>Monto</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#P-2025-043</td>
+                                                <td>Transportes Rápidos</td>
+                                                <td><span class="badge bg-success">LCL</span></td>
+                                                <td>Shanghai - Lima</td>
+                                                <td>24/04/2025 10:15</td>
+                                                <td><span class="badge bg-success">Aprobada</span></td>
+                                                <td>$4,250.00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Reenviar">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-info" title="Descargar PDF">
+                                                        <i class="fa-solid fa-file-pdf"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#P-2025-042</td>
+                                                <td>LogiExpress S.A.</td>
+                                                <td><span class="badge bg-primary">FCL</span></td>
+                                                <td>Rotterdam - Callao</td>
+                                                <td>23/04/2025 14:30</td>
+                                                <td><span class="badge bg-success">Aprobada</span></td>
+                                                <td>$12,800.00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Reenviar">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-info" title="Descargar PDF">
+                                                        <i class="fa-solid fa-file-pdf"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#P-2025-041</td>
+                                                <td>Carga Segura</td>
+                                                <td><span class="badge bg-warning text-dark">Aéreo</span></td>
+                                                <td>Miami - Lima</td>
+                                                <td>22/04/2025 09:45</td>
+                                                <td><span class="badge bg-info text-dark">En revisión</span></td>
+                                                <td>$3,750.00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Reenviar">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-info" title="Descargar PDF">
+                                                        <i class="fa-solid fa-file-pdf"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#P-2025-040</td>
+                                                <td>EnvíaRápido</td>
+                                                <td><span class="badge bg-primary">FCL</span></td>
+                                                <td>Buenos Aires - Callao</td>
+                                                <td>21/04/2025 16:20</td>
+                                                <td><span class="badge bg-danger">Rechazada</span></td>
+                                                <td>$8,900.00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Reenviar">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-info" title="Descargar PDF">
+                                                        <i class="fa-solid fa-file-pdf"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#P-2025-039</td>
+                                                <td>Transportes Rápidos</td>
+                                                <td><span class="badge bg-success">LCL</span></td>
+                                                <td>Guayaquil - Callao</td>
+                                                <td>20/04/2025 11:10</td>
+                                                <td><span class="badge bg-success">Aprobada</span></td>
+                                                <td>$2,150.00</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Reenviar">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-info" title="Descargar PDF">
+                                                        <i class="fa-solid fa-file-pdf"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen estadístico -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-pie me-2"></i> Resumen de Proformas Enviadas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Total Enviadas</h6>
+                                                <h3 class="mb-0">28</h3>
+                                            </div>
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-paper-plane text-primary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 8px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Aprobadas</h6>
+                                                <h3 class="mb-0">22 <small class="text-success">(78.6%)</small></h3>
+                                            </div>
+                                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-check-circle text-success fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 8px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 78.6%" aria-valuenow="78.6" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Rechazadas</h6>
+                                                <h3 class="mb-0">3 <small class="text-danger">(10.7%)</small></h3>
+                                            </div>
+                                            <div class="bg-danger bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-xmark text-danger fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="progress mb-3" style="height: 8px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 10.7%" aria-valuenow="10.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="chart-container" style="position: relative; height:100%;">
+                                            <canvas id="estadoProformasChart" style="max-height: 350px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Gráfico de estado de proformas
+        const estadoCtx = document.getElementById('estadoProformasChart').getContext('2d');
+        const estadoChart = new Chart(estadoCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                datasets: [
+                    {
+                        label: 'Aprobadas',
+                        data: [7, 9, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: '#198754',
+                        borderWidth: 0
+                    },
+                    {
+                        label: 'Rechazadas',
+                        data: [1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: '#dc3545',
+                        borderWidth: 0
+                    },
+                    {
+                        label: 'En revisión',
+                        data: [3, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: '#0dcaf0',
+                        borderWidth: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

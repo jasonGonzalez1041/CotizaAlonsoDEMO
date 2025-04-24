@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes - LogiProformas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .main {
+            padding-top: 70px;
+        }
+        .card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .settings-card {
+            border-left: 4px solid #4e73df;
+        }
+        .badge-blue {
+            background-color: #4e73df;
+            color: white;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4e73df;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .settings-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            background-color: #e3e6f0;
+            color: #4e73df;
+        }
+        .nav-tabs .nav-link.active {
+            border-bottom: 3px solid #4e73df;
+            font-weight: 600;
+        }
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link active">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-4">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1><i class="fa-solid fa-gears me-2"></i> Ajustes del Sistema</h1>
+                                <p class="text-muted">Configuración general de la plataforma LogiProformas</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary me-2">
+                                    <i class="fa-solid fa-floppy-disk me-2"></i> Guardar Cambios
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fa-solid fa-rotate me-2"></i> Restablecer
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Configuración General -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card settings-card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-sliders me-2"></i>Configuración General</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Nombre de la Empresa</label>
+                                            <input type="text" class="form-control" value="LogiProformas S.A.">
+                                            <small class="text-muted">Aparecerá en documentos y correos</small>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Zona Horaria</label>
+                                            <select class="form-select">
+                                                <option>(UTC-05:00) Lima, Bogotá, Quito</option>
+                                                <option>(UTC-04:00) Santiago, La Paz</option>
+                                                <option>(UTC-06:00) Ciudad de México</option>
+                                                <option selected>(UTC-03:00) Buenos Aires, Montevideo</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Formato de Fecha</label>
+                                            <select class="form-select">
+                                                <option>DD/MM/AAAA (24/04/2025)</option>
+                                                <option selected>DD-MM-AAAA (24-04-2025)</option>
+                                                <option>MM/DD/AAAA (04/24/2025)</option>
+                                                <option>AAAA-MM-DD (2025-04-24)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Moneda Predeterminada</label>
+                                            <select class="form-select">
+                                                <option>USD - Dólar Estadounidense</option>
+                                                <option selected>EUR - Euro</option>
+                                                <option>PEN - Sol Peruano</option>
+                                                <option>CLP - Peso Chileno</option>
+                                                <option>ARS - Peso Argentino</option>
+                                                <option>MXN - Peso Mexicano</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Formato de Número</label>
+                                            <select class="form-select">
+                                                <option>1,234.56 (punto decimal)</option>
+                                                <option selected>1.234,56 (coma decimal)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Sistema de Medidas</label>
+                                            <select class="form-select">
+                                                <option selected>Sistema Métrico (kg, cm)</option>
+                                                <option>Sistema Imperial (lb, in)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuración de Notificaciones -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="fa-solid fa-bell me-2"></i>Notificaciones y Alertas</h5>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-plus me-1"></i> Nueva Regla
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <label class="form-label fw-bold">Notificaciones por Email</label>
+                                                <label class="switch">
+                                                    <input type="checkbox" checked>
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </div>
+                                            <small class="text-muted">Recibir notificaciones importantes por correo electrónico</small>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Frecuencia de Reportes</label>
+                                            <select class="form-select">
+                                                <option>Diario</option>
+                                                <option selected>Semanal</option>
+                                                <option>Quincenal</option>
+                                                <option>Mensual</option>
+                                            </select>
+                                            <small class="text-muted">Con qué frecuencia recibir reportes automáticos</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Alertas en Tiempo Real</label>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <label class="switch me-3">
+                                                    <input type="checkbox" checked>
+                                                    <span class="slider"></span>
+                                                </label>
+                                                <span class="badge bg-success">Activo</span>
+                                            </div>
+                                            <small class="text-muted">Mostrar notificaciones instantáneas en la plataforma</small>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold">Tipos de Alertas</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="alertProformas" checked>
+                                                <label class="form-check-label" for="alertProformas">Nuevas proformas</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="alertErrores" checked>
+                                                <label class="form-check-label" for="alertErrores">Errores en proformas</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="alertClientes">
+                                                <label class="form-check-label" for="alertClientes">Nuevos clientes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuración Avanzada con pestañas -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-code me-2"></i>Configuración Avanzada</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs mb-4" id="advancedSettingsTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="integraciones-tab" data-bs-toggle="tab" data-bs-target="#integraciones" type="button" role="tab">Integraciones</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="seguridad-tab" data-bs-toggle="tab" data-bs-target="#seguridad" type="button" role="tab">Seguridad</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="backup-tab" data-bs-toggle="tab" data-bs-target="#backup" type="button" role="tab">Backup</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="api-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab">API</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="advancedSettingsContent">
+                                    <!-- Pestaña Integraciones -->
+                                    <div class="tab-pane fade show active" id="integraciones" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <div class="settings-icon">
+                                                                <i class="fa-solid fa-envelope"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-0">Correo Electrónico</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Servidor SMTP</label>
+                                                            <input type="text" class="form-control" value="smtp.logiproformas.com">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Puerto</label>
+                                                            <input type="number" class="form-control" value="587">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Seguridad</label>
+                                                            <select class="form-select">
+                                                                <option>TLS</option>
+                                                                <option>SSL</option>
+                                                                <option>Ninguna</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-sm btn-outline-primary">Probar Conexión</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <div class="settings-icon">
+                                                                <i class="fa-brands fa-google"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-0">Google Workspace</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Estado</label>
+                                                            <span class="badge bg-success">Conectado</span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Cuenta</label>
+                                                            <input type="text" class="form-control" value="admin@logiproformas.com" disabled>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Sincronización</label>
+                                                            <select class="form-select">
+                                                                <option>Manual</option>
+                                                                <option selected>Automática cada 24h</option>
+                                                                <option>Automática cada 12h</option>
+                                                                <option>Automática cada 1h</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-sm btn-outline-danger">Desconectar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fa-solid fa-plus me-2"></i> Añadir Nueva Integración
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña Seguridad -->
+                                    <div class="tab-pane fade" id="seguridad" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Requerir autenticación en dos pasos</label>
+                                                    <select class="form-select">
+                                                        <option selected>No requerido</option>
+                                                        <option>Solo para administradores</option>
+                                                        <option>Para todos los usuarios</option>
+                                                    </select>
+                                                    <small class="text-muted">Añade una capa adicional de seguridad</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Política de contraseñas</label>
+                                                    <select class="form-select">
+                                                        <option>Básica (6 caracteres mínimo)</option>
+                                                        <option selected>Media (8 caracteres, mayúsculas y números)</option>
+                                                        <option>Fuerte (12 caracteres, símbolos requeridos)</option>
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Caducidad de contraseñas</label>
+                                                    <select class="form-select">
+                                                        <option selected>Nunca</option>
+                                                        <option>Cada 30 días</option>
+                                                        <option>Cada 90 días</option>
+                                                        <option>Cada 180 días</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">IPs Permitidas</label>
+                                                    <textarea class="form-control" rows="3">192.168.1.0/24
+201.131.45.78
+186.154.201.12</textarea>
+                                                    <small class="text-muted">Lista de IPs con acceso al sistema</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Registro de actividad</label>
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <label class="switch me-3">
+                                                            <input type="checkbox" checked>
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                        <span class="badge bg-success">Activo</span>
+                                                    </div>
+                                                    <small class="text-muted">Registra todas las acciones importantes en el sistema</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña Backup -->
+                                    <div class="tab-pane fade" id="backup" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Configuración de Backup</h5>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Frecuencia</label>
+                                                            <select class="form-select">
+                                                                <option>Diario</option>
+                                                                <option selected>Semanal</option>
+                                                                <option>Mensual</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Hora de Ejecución</label>
+                                                            <input type="time" class="form-control" value="02:00">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Retención</label>
+                                                            <select class="form-select">
+                                                                <option>7 días</option>
+                                                                <option selected>30 días</option>
+                                                                <option>90 días</option>
+                                                                <option>1 año</option>
+                                                            </select>
+                                                        </div>
+                                                        <button class="btn btn-primary">Programar Backup</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Historial de Backups</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-sm">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Fecha</th>
+                                                                        <th>Tamaño</th>
+                                                                        <th>Estado</th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>23/04/2025 02:00</td>
+                                                                        <td>1.2 GB</td>
+                                                                        <td><span class="badge bg-success">Completado</span></td>
+                                                                        <td><button class="btn btn-sm btn-outline-primary">Descargar</button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>16/04/2025 02:00</td>
+                                                                        <td>1.1 GB</td>
+                                                                        <td><span class="badge bg-success">Completado</span></td>
+                                                                        <td><button class="btn btn-sm btn-outline-primary">Descargar</button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>09/04/2025 02:00</td>
+                                                                        <td>1.0 GB</td>
+                                                                        <td><span class="badge bg-warning text-dark">Parcial</span></td>
+                                                                        <td><button class="btn btn-sm btn-outline-primary">Descargar</button></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <button class="btn btn-outline-primary mt-3">
+                                                            <i class="fa-solid fa-database me-2"></i> Crear Backup Ahora
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pestaña API -->
+                                    <div class="tab-pane fade" id="api" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Estado de la API</label>
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <label class="switch me-3">
+                                                            <input type="checkbox" checked>
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                        <span class="badge bg-success">Activo</span>
+                                                    </div>
+                                                    <small class="text-muted">Habilita o deshabilita el acceso a la API</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Clave API</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" value="sk_prod_1234567890abcdef">
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="fa-solid fa-copy"></i>
+                                                        </button>
+                                                    </div>
+                                                    <small class="text-muted">Clave para conectarse a la API</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Endpoint</label>
+                                                    <input type="text" class="form-control" value="https://api.logiproformas.com/v1">
+                                                    <small class="text-muted">URL base para las llamadas a la API</small>
+                                                </div>
+                                                
+                                                <div class="mb-4">
+                                                    <label class="form-label fw-bold">Límite de Tasas</label>
+                                                    <input type="number" class="form-control" value="1000">
+                                                    <small class="text-muted">Llamadas por minuto permitidas</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="card-title"><i class="fa-solid fa-circle-info me-2"></i>Documentación de la API</h6>
+                                                <p class="small">Consulta nuestra documentación completa para integrar con otros sistemas.</p>
+                                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fa-solid fa-book me-2"></i> Ver Documentación
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulación de funcionalidad de switches y botones
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle para mostrar/ocultar clave API
+            document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.closest('.input-group').querySelector('input');
+                    if (this.querySelector('.fa-eye')) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            this.querySelector('.fa-eye').classList.replace('fa-eye', 'fa-eye-slash');
+                        } else {
+                            input.type = 'password';
+                            this.querySelector('.fa-eye-slash').classList.replace('fa-eye-slash', 'fa-eye');
+                        }
+                    } else if (this.querySelector('.fa-copy')) {
+                        input.select();
+                        document.execCommand('copy');
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fa-solid fa-check"></i>';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 2000);
+                    }
+                });
+            });
+            
+            // Inicializar tooltips si Bootstrap está cargado
+            if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

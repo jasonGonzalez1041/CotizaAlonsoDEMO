@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiProformas - Mantenimiento de Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .service-icon {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+
+        .package-icon {
+            background-color: rgba(25, 135, 84, 0.1);
+            color: #198754;
+        }
+
+        .express-icon {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .special-icon {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        /* Estilos adicionales */
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .table-responsive thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa;
+            z-index: 10;
+        }
+
+        .main {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-icon {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar producto..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link ">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link active">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-3">
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <h1><i class="fa-solid fa-cube me-2"></i> Mantenimiento de Productos</h1>
+                        <p class="text-muted">Administración de servicios y productos de logística</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Filtros y acciones -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex">
+                                        <div class="dropdown me-2">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa-solid fa-filter"></i> Filtrar por
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="#">Todos</a></li>
+                                                <li><a class="dropdown-item" href="#">Activos</a></li>
+                                                <li><a class="dropdown-item" href="#">Inactivos</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                                <li><a class="dropdown-item" href="#">Paquetes</a></li>
+                                                <li><a class="dropdown-item" href="#">Especiales</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa-solid fa-sort"></i> Ordenar por
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                                <li><a class="dropdown-item" href="#">Nombre A-Z</a></li>
+                                                <li><a class="dropdown-item" href="#">Nombre Z-A</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Precio (Mayor a menor)</a></li>
+                                                <li><a class="dropdown-item" href="#">Precio (Menor a mayor)</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#nuevoProductoModal">
+                                        <i class="fa-solid fa-plus me-1"></i> Nuevo Producto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listado de productos -->
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">24 Productos/Servicios Registrados</h5>
+                                <div class="d-flex">
+                                    <div class="input-group input-group-sm me-2" style="width: 200px;">
+                                        <input type="text" class="form-control" placeholder="Buscar producto...">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="fa-solid fa-search"></i></button>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fa-solid fa-file-export"></i> Exportar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="5%">#</th>
+                                                <th width="25%">Nombre</th>
+                                                <th width="15%">Código</th>
+                                                <th width="15%">Categoría</th>
+                                                <th width="15%">Precio</th>
+                                                <th width="10%">Estado</th>
+                                                <th width="15%">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="product-icon service-icon">
+                                                            <i class="fa-solid fa-truck-fast"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <strong>Envío Estándar Nacional</strong>
+                                                            <div class="text-muted small">Entrega en 3-5 días hábiles
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>SRV-EST-001</td>
+                                                <td>Servicio</td>
+                                                <td>S/ 25.00</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar"
+                                                        data-bs-toggle="modal" data-bs-target="#editarProductoModal">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="product-icon express-icon">
+                                                            <i class="fa-solid fa-rocket"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <strong>Envío Express 24h</strong>
+                                                            <div class="text-muted small">Entrega al día siguiente</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>SRV-EXP-002</td>
+                                                <td>Servicio</td>
+                                                <td>S/ 45.00</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="product-icon package-icon">
+                                                            <i class="fa-solid fa-boxes-packing"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <strong>Paquete Empresarial</strong>
+                                                            <div class="text-muted small">5 envíos mensuales</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>PKG-EMP-003</td>
+                                                <td>Paquete</td>
+                                                <td>S/ 100.00</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="product-icon special-icon">
+                                                            <i class="fa-solid fa-temperature-low"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <strong>Envío Refrigerado</strong>
+                                                            <div class="text-muted small">Cadena de frío garantizada
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>SRV-REF-004</td>
+                                                <td>Especial</td>
+                                                <td>S/ 75.00</td>
+                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="product-icon service-icon">
+                                                            <i class="fa-solid fa-ship"></i>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <strong>Envío Internacional</strong>
+                                                            <div class="text-muted small">América del Sur</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>SRV-INT-005</td>
+                                                <td>Servicio</td>
+                                                <td>S/ 120.00</td>
+                                                <td><span class="badge bg-secondary">Inactivo</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1"
+                                                aria-disabled="true">Anterior</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estadísticas de productos -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fa-solid fa-chart-pie me-2"></i> Estadísticas de Productos
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Total Productos</h6>
+                                                <h3 class="mb-0">24</h3>
+                                            </div>
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-cubes text-primary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Activos</h6>
+                                                <h3 class="mb-0">20 <small class="text-success">(83.3%)</small></h3>
+                                            </div>
+                                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-toggle-on text-success fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Inactivos</h6>
+                                                <h3 class="mb-0">4 <small class="text-danger">(16.7%)</small></h3>
+                                            </div>
+                                            <div class="bg-secondary bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-toggle-off text-secondary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="text-muted mb-1">Nuevos</h6>
+                                                <h3 class="mb-0">3 <small class="text-info">(este mes)</small></h3>
+                                            </div>
+                                            <div class="bg-info bg-opacity-10 p-3 rounded">
+                                                <i class="fa-solid fa-star text-info fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="chart-container" style="position: relative; height:300px;">
+                                            <canvas id="productosChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Producto -->
+    <div class="modal fade" id="nuevoProductoModal" tabindex="-1" aria-labelledby="nuevoProductoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="nuevoProductoModalLabel"><i class="fa-solid fa-cube me-2"></i> Nuevo
+                        Producto/Servicio</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <ul class="nav nav-tabs mb-4" id="productoTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="basico-tab" data-bs-toggle="tab"
+                                    data-bs-target="#basico" type="button" role="tab" aria-controls="basico"
+                                    aria-selected="true">Datos Básicos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="precios-tab" data-bs-toggle="tab" data-bs-target="#precios"
+                                    type="button" role="tab" aria-controls="precios" aria-selected="false">Precios y
+                                    Costos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="detalles-tab" data-bs-toggle="tab"
+                                    data-bs-target="#detalles" type="button" role="tab" aria-controls="detalles"
+                                    aria-selected="false">Detalles</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="productoTabContent">
+                            <div class="tab-pane fade show active" id="basico" role="tabpanel"
+                                aria-labelledby="basico-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nombreProducto" class="form-label">Nombre del
+                                            Producto/Servicio</label>
+                                        <input type="text" class="form-control" id="nombreProducto" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="codigoProducto" class="form-label">Código</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="codigoProducto" required>
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="generarCodigo">Generar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tipoProducto" class="form-label">Tipo</label>
+                                        <select class="form-select" id="tipoProducto" required>
+                                            <option value="">Seleccionar...</option>
+                                            <option value="servicio">Servicio</option>
+                                            <option value="paquete">Paquete</option>
+                                            <option value="especial">Servicio Especial</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="categoriaProducto" class="form-label">Categoría</label>
+                                        <select class="form-select" id="categoriaProducto" required>
+                                            <option value="">Seleccionar...</option>
+                                            <option value="nacional">Nacional</option>
+                                            <option value="internacional">Internacional</option>
+                                            <option value="express">Express</option>
+                                            <option value="refrigerado">Refrigerado</option>
+                                            <option value="empresarial">Empresarial</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="estadoProducto" class="form-label">Estado</label>
+                                        <select class="form-select" id="estadoProducto">
+                                            <option selected value="activo">Activo</option>
+                                            <option value="inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="iconoProducto" class="form-label">Ícono</label>
+                                        <select class="form-select" id="iconoProducto">
+                                            <option value="fa-truck">Camión</option>
+                                            <option value="fa-ship">Barco</option>
+                                            <option value="fa-plane">Avión</option>
+                                            <option value="fa-warehouse">Almacén</option>
+                                            <option value="fa-box">Paquete</option>
+                                            <option value="fa-temperature-low">Refrigerado</option>
+                                            <option value="fa-rocket">Express</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="descripcionCorta" class="form-label">Descripción Corta</label>
+                                        <input type="text" class="form-control" id="descripcionCorta"
+                                            placeholder="Aparecerá en listados y facturas">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="precios" role="tabpanel" aria-labelledby="precios-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="precioBase" class="form-label">Precio Base (S/)</label>
+                                        <input type="number" step="0.01" class="form-control" id="precioBase" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="costoOperativo" class="form-label">Costo Operativo (S/)</label>
+                                        <input type="number" step="0.01" class="form-control" id="costoOperativo"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="moneda" class="form-label">Moneda</label>
+                                        <select class="form-select" id="moneda">
+                                            <option selected>Soles (S/)</option>
+                                            <option>Dólares ($)</option>
+                                            <option>Euros (€)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="impuestos" class="form-label">Impuestos</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="impuestos" value="18">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="descuento" class="form-label">Descuento Promocional</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="descuento" value="0">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="precioVariable">
+                                            <label class="form-check-label" for="precioVariable">
+                                                Precio variable (depende de peso/dimensiones)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="detalles" role="tabpanel" aria-labelledby="detalles-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="tiempoEntrega" class="form-label">Tiempo de Entrega</label>
+                                        <input type="text" class="form-control" id="tiempoEntrega"
+                                            placeholder="Ej: 3-5 días hábiles">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pesoMaximo" class="form-label">Peso Máximo (kg)</label>
+                                        <input type="number" class="form-control" id="pesoMaximo">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="descripcionLarga" class="form-label">Descripción Detallada</label>
+                                        <textarea class="form-control" id="descripcionLarga" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="restricciones" class="form-label">Restricciones</label>
+                                        <textarea class="form-control" id="restricciones" rows="2"
+                                            placeholder="Artículos no permitidos, condiciones especiales, etc."></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="beneficios" class="form-label">Beneficios Incluidos</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="seguimiento">
+                                            <label class="form-check-label" for="seguimiento">
+                                                Seguimiento en línea
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="seguro">
+                                            <label class="form-check-label" for="seguro">
+                                                Seguro básico incluido
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="recojo">
+                                            <label class="form-check-label" for="recojo">
+                                                Recojo en domicilio
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Producto -->
+    <div class="modal fade" id="editarProductoModal" tabindex="-1" aria-labelledby="editarProductoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editarProductoModalLabel"><i class="fa-solid fa-edit me-2"></i> Editar
+                        Producto/Servicio</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <ul class="nav nav-tabs mb-4" id="editProductoTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="edit-basico-tab" data-bs-toggle="tab"
+                                    data-bs-target="#edit-basico" type="button" role="tab" aria-controls="edit-basico"
+                                    aria-selected="true">Datos Básicos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-precios-tab" data-bs-toggle="tab"
+                                    data-bs-target="#edit-precios" type="button" role="tab" aria-controls="edit-precios"
+                                    aria-selected="false">Precios y Costos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-detalles-tab" data-bs-toggle="tab"
+                                    data-bs-target="#edit-detalles" type="button" role="tab"
+                                    aria-controls="edit-detalles" aria-selected="false">Detalles</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-historial-tab" data-bs-toggle="tab"
+                                    data-bs-target="#edit-historial" type="button" role="tab"
+                                    aria-controls="edit-historial" aria-selected="false">Historial</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="editProductoTabContent">
+                            <div class="tab-pane fade show active" id="edit-basico" role="tabpanel"
+                                aria-labelledby="edit-basico-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="edit-nombreProducto" class="form-label">Nombre del
+                                            Producto/Servicio</label>
+                                        <input type="text" class="form-control" id="edit-nombreProducto"
+                                            value="Envío Estándar Nacional" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-codigoProducto" class="form-label">Código</label>
+                                        <input type="text" class="form-control" id="edit-codigoProducto"
+                                            value="SRV-EST-001" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-tipoProducto" class="form-label">Tipo</label>
+                                        <select class="form-select" id="edit-tipoProducto" required>
+                                            <option value="servicio" selected>Servicio</option>
+                                            <option value="paquete">Paquete</option>
+                                            <option value="especial">Servicio Especial</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-categoriaProducto" class="form-label">Categoría</label>
+                                        <select class="form-select" id="edit-categoriaProducto" required>
+                                            <option value="nacional" selected>Nacional</option>
+                                            <option value="internacional">Internacional</option>
+                                            <option value="express">Express</option>
+                                            <option value="refrigerado">Refrigerado</option>
+                                            <option value="empresarial">Empresarial</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-estadoProducto" class="form-label">Estado</label>
+                                        <select class="form-select" id="edit-estadoProducto">
+                                            <option selected value="activo">Activo</option>
+                                            <option value="inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-iconoProducto" class="form-label">Ícono</label>
+                                        <select class="form-select" id="edit-iconoProducto">
+                                            <option value="fa-truck" selected>Camion</option>
+                                            <option value="fa-ship">Barco</option>
+                                            <option value="fa-plane">Avión</option>
+                                            <option value="fa-warehouse">Almacén</option>
+                                            <option value="fa-box">Paquete</option>
+                                            <option value="fa-temperature-low">Refrigerado</option>
+                                            <option value="fa-rocket">Express</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="edit-descripcionCorta" class="form-label">Descripción Corta</label>
+                                        <input type="text" class="form-control" id="edit-descripcionCorta"
+                                            value="Entrega en 3-5 días hábiles">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-precios" role="tabpanel"
+                                aria-labelledby="edit-precios-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="edit-precioBase" class="form-label">Precio Base (S/)</label>
+                                        <input type="number" step="0.01" class="form-control" id="edit-precioBase"
+                                            value="25.00" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="edit-costoOperativo" class="form-label">Costo Operativo (S/)</label>
+                                        <input type="number" step="0.01" class="form-control" id="edit-costoOperativo"
+                                            value="15.00" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="edit-moneda" class="form-label">Moneda</label>
+                                        <select class="form-select" id="edit-moneda">
+                                            <option selected>Soles (S/)</option>
+                                            <option>Dólares ($)</option>
+                                            <option>Euros (€)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-impuestos" class="form-label">Impuestos</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="edit-impuestos" value="18">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-descuento" class="form-label">Descuento Promocional</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="edit-descuento" value="0">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="edit-precioVariable">
+                                            <label class="form-check-label" for="edit-precioVariable">
+                                                Precio variable (depende de peso/dimensiones)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-detalles" role="tabpanel"
+                                aria-labelledby="edit-detalles-tab">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="edit-tiempoEntrega" class="form-label">Tiempo de Entrega</label>
+                                        <input type="text" class="form-control" id="edit-tiempoEntrega"
+                                            value="3-5 días hábiles">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="edit-pesoMaximo" class="form-label">Peso Máximo (kg)</label>
+                                        <input type="number" class="form-control" id="edit-pesoMaximo" value="30">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="edit-descripcionLarga" class="form-label">Descripción
+                                            Detallada</label>
+                                        <textarea class="form-control" id="edit-descripcionLarga"
+                                            rows="3">Servicio de envío estándar para paquetes nacionales con cobertura en todo el territorio. Incluye seguimiento básico y seguro limitado.</textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="edit-restricciones" class="form-label">Restricciones</label>
+                                        <textarea class="form-control" id="edit-restricciones"
+                                            rows="2">No se aceptan artículos frágiles, perecederos o de alto valor sin seguro adicional.</textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label">Beneficios Incluidos</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="edit-seguimiento"
+                                                checked>
+                                            <label class="form-check-label" for="edit-seguimiento">
+                                                Seguimiento en línea
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="edit-seguro" checked>
+                                            <label class="form-check-label" for="edit-seguro">
+                                                Seguro básico incluido
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="edit-recojo">
+                                            <label class="form-check-label" for="edit-recojo">
+                                                Recojo en domicilio
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="edit-historial" role="tabpanel"
+                                aria-labelledby="edit-historial-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Usuario</th>
+                                                <th>Cambio</th>
+                                                <th>Valor Anterior</th>
+                                                <th>Nuevo Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>15/04/2023</td>
+                                                <td>admin</td>
+                                                <td>Precio</td>
+                                                <td>S/ 22.00</td>
+                                                <td>S/ 25.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10/03/2023</td>
+                                                <td>jperez</td>
+                                                <td>Descripción</td>
+                                                <td>Entrega en 2-4 días</td>
+                                                <td>Entrega en 3-5 días</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/02/2023</td>
+                                                <td>admin</td>
+                                                <td>Estado</td>
+                                                <td>Inactivo</td>
+                                                <td>Activo</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="button" class="btn btn-outline-danger">Desactivar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Eliminar -->
+    <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title"><i class="fa-solid fa-triangle-exclamation me-2"></i> Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea eliminar este producto? Esta acción no se puede deshacer.</p>
+                    <p class="fw-bold">Producto: <span id="productoAEliminar">Envío Estándar Nacional</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Eliminar Definitivamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts necesarios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Inicializar gráfico de productos
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('productosChart').getContext('2d');
+            const productosChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [{
+                        label: 'Productos Activos',
+                        data: [12, 14, 16, 15, 18, 20, 22, 21, 23, 24, 23, 24],
+                        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                        borderColor: 'rgba(13, 110, 253, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Productos Inactivos',
+                        data: [2, 3, 2, 1, 2, 1, 1, 2, 1, 0, 1, 0],
+                        backgroundColor: 'rgba(108, 117, 125, 0.7)',
+                        borderColor: 'rgba(108, 117, 125, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Generar código automático
+            document.getElementById('generarCodigo').addEventListener('click', function () {
+                const tipo = document.getElementById('tipoProducto').value;
+                const categoria = document.getElementById('categoriaProducto').value;
+
+                if (!tipo || !categoria) {
+                    alert('Seleccione tipo y categoría primero');
+                    return;
+                }
+
+                const prefix = tipo === 'servicio' ? 'SRV' : tipo === 'paquete' ? 'PKG' : 'ESP';
+                const catPrefix = categoria.substring(0, 3).toUpperCase();
+                const randomNum = Math.floor(100 + Math.random() * 900);
+
+                document.getElementById('codigoProducto').value = `${prefix}-${catPrefix}-${randomNum}`;
+            });
+        });
+
+        // Función para filtrar productos en la tabla
+        function filtrarProductos() {
+            const input = document.querySelector('.table-responsive input[type="text"]');
+            const filter = input.value.toUpperCase();
+            const table = document.querySelector('.table-responsive table');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[1]; // Columna de nombre
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }       
+            }
+        }
+    </script>
+</body>
+
+</html>

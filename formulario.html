@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CotizAlonso - Formulario de Cotización</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card-header {
+            font-weight: 600;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .nav-link:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .nav-link.active {
+            color: white;
+            background-color: #0d6efd;
+        }
+        .main {
+            margin-top: 50px;
+            padding-top: 80px;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                min-height: auto;
+            }
+            .main {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-paper-plane"></i> LogiProformas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto me-3">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-md-2 d-flex flex-column">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">
+                                <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_pendientes.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-inbox me-2"></i> Proformas Pendientes</div>
+                                <span class="badge rounded-pill text-bg-warning">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_enviadas.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-paper-plane me-2"></i> Enviadas</div>
+                                <span class="badge rounded-pill text-bg-success">28</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="proformas_errores.html" class="nav-link d-flex justify-content-between align-items-center">
+                                <div><i class="fa-solid fa-circle-exclamation me-2"></i> Con Errores</div>
+                                <span class="badge rounded-pill text-bg-danger">2</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="clientes.html" class="nav-link">
+                                <i class="fa-solid fa-users me-2"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="productos.html" class="nav-link">
+                                <i class="fa-solid fa-cube me-2"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="plantillas.html" class="nav-link">
+                                <i class="fa-solid fa-copy me-2"></i> Plantillas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="formulario.html" class="nav-link active">
+                                <i class="fa-solid fa-pen-to-square me-2"></i> Formulario
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="text-light">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="reportes.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line me-2"></i> Reportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="configia.html" class="nav-link">
+                                <i class="fa-solid fa-robot me-2"></i> Config. IA
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ajustes.html" class="nav-link">
+                                <i class="fa-solid fa-gears me-2"></i> Ajustes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main col-md-10 p-3">
+                <div class="row mb-4">
+                    <div class="col-md-10">
+                        <h1><i class="fa-solid fa-file-signature me-2"></i> Nueva Solicitud de Cotización</h1>
+                        <p class="text-muted">Complete todos los campos requeridos (*) para generar su proforma</p>
+                        <hr>
+                    </div>
+                </div>
+
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <!-- Sección Información del Cliente -->
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0"><i class="fa-solid fa-user-tie me-2"></i> Información del Cliente</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label for="nombreCliente" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="nombreCliente" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="email" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="telefono" class="form-label">Teléfono/Celular <span class="text-danger">*</span></label>
+                                            <input type="tel" class="form-control" id="telefono" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="empresa" class="form-label">Empresa/Razón Social</label>
+                                            <input type="text" class="form-control" id="empresa">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="ruc" class="form-label">RUC/DNI <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="ruc" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección Detalles del Envío -->
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0"><i class="fa-solid fa-truck-fast me-2"></i> Detalles del Envío</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Tipo de Operación <span class="text-danger">*</span></label>
+                                            <select class="form-select" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option>Importación</option>
+                                                <option>Exportación</option>
+                                                <option>Nacional</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Tipo de Servicio <span class="text-danger">*</span></label>
+                                            <select class="form-select" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option>FCL (Contenedor Completo)</option>
+                                                <option>LCL (Carga Suelta)</option>
+                                                <option>Aéreo</option>
+                                                <option>Terrestre</option>
+                                                <option>Multimodal</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Modalidad <span class="text-danger">*</span></label>
+                                            <select class="form-select" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option>Marítima</option>
+                                                <option>Aérea</option>
+                                                <option>Terrestre</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Incoterm <span class="text-danger">*</span></label>
+                                            <select class="form-select" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option>EXW</option>
+                                                <option>FOB</option>
+                                                <option>CIF</option>
+                                                <option>DDP</option>
+                                                <option>DAP</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección Origen y Destino -->
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="mb-0"><i class="fa-solid fa-route me-2"></i> Ruta de Transporte</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h6 class="card-title"><i class="fa-solid fa-ship me-2"></i> Origen</h6>
+                                                    <div class="row g-2">
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="País" required>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="Ciudad/Puerto/Aeropuerto" required>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="Dirección Exacta">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-title"><i class="fa-solid fa-map-marker-alt me-2"></i> Destino</h6>
+                                                    <div class="row g-2">
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="País" required>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="Ciudad/Puerto/Aeropuerto" required>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" placeholder="Dirección Exacta">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección Detalles de la Mercancía -->
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0"><i class="fa-solid fa-boxes-stacked me-2"></i> Detalles de la Mercancía</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Cantidad de Bultos <span class="text-danger">*</span></label>
+                                            <input type="number" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Peso Total (kg) <span class="text-danger">*</span></label>
+                                            <input type="number" step="0.01" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Volumen (m³)</label>
+                                            <input type="number" step="0.01" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Tipo de Mercancía <span class="text-danger">*</span></label>
+                                            <select class="form-select" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option>General</option>
+                                                <option>Perecedera</option>
+                                                <option>Peligrosa</option>
+                                                <option>Frágil</option>
+                                                <option>Alta Valor</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Descripción Detallada <span class="text-danger">*</span></label>
+                                            <textarea class="form-control" rows="3" required></textarea>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Código HS (Harmonized System)</label>
+                                            <input type="text" class="form-control" placeholder="Ej. 0808.30.00.00">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check mt-4">
+                                                <input class="form-check-input" type="checkbox" id="requiereRefrigeracion">
+                                                <label class="form-check-label" for="requiereRefrigeracion">
+                                                    Requiere Cadena de Frío
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="materialPeligroso">
+                                                <label class="form-check-label" for="materialPeligroso">
+                                                    Material Peligroso (IMDG/IATA)
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección Adicionales -->
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0"><i class="fa-solid fa-gears me-2"></i> Servicios Adicionales</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Fecha Estimada de Embarque <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Fecha Límite de Entrega</label>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Seguro de Carga</label>
+                                            <select class="form-select">
+                                                <option>No requerido</option>
+                                                <option>Seguro Básico</option>
+                                                <option>Seguro Completo</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="despachoAduanas">
+                                                <label class="form-check-label" for="despachoAduanas">
+                                                    Requiere Despacho de Aduanas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="almacenaje">
+                                                <label class="form-check-label" for="almacenaje">
+                                                    Necesita Almacenamiento Temporal
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Observaciones Adicionales</label>
+                                            <textarea class="form-control" rows="2" placeholder="Especificar cualquier requerimiento especial"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón de Envío -->
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                                <button type="reset" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-2"></i> Limpiar Formulario</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2"></i> Enviar Solicitud</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validación de formulario
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
