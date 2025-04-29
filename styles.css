@@ -1,43 +1,97 @@
 body {
     padding-top: 56px;
     background-color: #f8f9fa;
+    transition: all 0.3s;
 }
+
 .navbar-brand {
     font-weight: bold;
 }
+
 .sidebar {
-    background-color: #212529;
-    color: #f8f9fa;
-    position: fixed;
-    top: 56px;
-    bottom: 0;
-    left: 0;
+    background-color: #ffffff;
+    color: #000000;
     z-index: 1000;
     display: block;
     padding: 20px;
+    padding-top: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     border-right: 1px solid #dee2e6;
-    width: 250px;
+    transition: all 0.3s ease;
+    min-height: calc(100vh - 56px);
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
 }
+
+.sidebar.collapsed {
+    padding: 0px 15px;
+    width: 80px !important;
+    min-width: 80px !important;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed hr,
+.sidebar.collapsed .badge {
+    display: none;
+}
+
+.sidebar.collapsed .nav-link {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.sidebar.collapsed .nav-link i {
+    font-size: 1.2rem;
+    margin-right: 0 !important;
+    width: 100%;
+}
+
+#sidebarToggle {
+    z-index: 1030;
+    border-radius: 50%;
+    margin-top: 15px !important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#sidebarToggle:hover {
+    background-color: #0b5ed7;
+}
+
+.sidebar.collapsed #sidebarToggle {
+    left: 20px;
+}
+
+.main {
+    padding: 20px;
+    padding-right: 0;
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
 .nav-pills .nav-link {
-    color: #f8f9fa;
+    color: #000000;
     border-radius: 0;
 }
 .nav-pills .nav-link.active {
     background-color: #0d6efd;
-    color: #fff;
+    color: #020202;
 }
 .nav-pills .nav-link:hover:not(.active) {
     background-color: rgba(255,255,255,0.1);
 }
-.main {
-    padding: 20px;
-    margin-left: 250px;
-    width: 100%;
-    padding-right: 0;
-    overflow-x: hidden;
-}
+
 .text-bg-warning {
     background-color: #ffc107;
     color: #000;
@@ -183,9 +237,21 @@ body {
     padding-right: 0;
     padding-left: 0;
 }
+.hidden{
+    display: none !important;
+}
 @media (max-width: 768px) {
-    .col-md-10 {
-        width: 100%;
-        padding-right: 0;
+    .sidebar.collapsed {
+        
     }
+}
+
+
+.tooltip-inner {
+    background-color: #333;
+    color: #fff;
+}
+
+body > nav {
+    border-bottom: 1px solid #83838375;
 }
