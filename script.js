@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const bellIcon = document.getElementById("notificacion_bell");
   const notificationDropdown = document.getElementById("notification-dropdown");
   const notificationList = document.getElementById("notification-list");
-  const markAllReadBtn = document.getElementById("mark-all-read");
 
   // Datos de ejemplo para las notificaciones
   const notifications = [
@@ -148,16 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!notificationDropdown.contains(e.target) && e.target !== bellIcon) {
       notificationDropdown.style.display = "none";
     }
-  });
-
-  // Marcar todas como leídas
-  markAllReadBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    notifications.forEach((notif) => (notif.read = true));
-    renderNotifications();
-    updateUnreadCount();
   });
 
   // Renderizar las notificaciones

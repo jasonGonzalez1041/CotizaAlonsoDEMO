@@ -52,6 +52,32 @@
                             </i>
                            
                         </a>
+                        <!-- Contenedor de notificaciones -->
+                        <div id="notification-dropdown" class="notification-dropdown">
+                          <div class="notification-header d-flex justify-content-between align-items-center p-2 border-bottom">
+                              <h6 class="mb-0">Notificaciones</h6>
+                              <small><a href="#" id="mark-all-read">Marcar todas como leídas</a></small>
+                          </div>
+                          <div id="notification-list" class="notification-list">
+                              <!-- Las notificaciones se insertarán aquí dinámicamente -->
+                              <div class="notification-item unread">
+                                  <div class="d-flex">
+                                      <div class="flex-shrink-0 me-3">
+                                          <i class="fa-solid fa-file-invoice text-primary"></i>
+                                      </div>
+                                      <div class="flex-grow-1">
+                                          <div class="notification-title">Nueva cotización</div>
+                                          <div class="notification-message">La cotización ALO-186-4-2025 ha sido creada. Por favor revisar para aprobar o modificar.</div>
+                                          <div class="notification-time">12:42 PM el 30/04/2025</div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- Más notificaciones... -->
+                          </div>
+                          <div class="notification-footer text-center p-2 border-top">
+                              <a href="#" class="text-decoration-none">Ver todas las notificaciones</a>
+                          </div>
+                      </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Admin</a>
@@ -81,10 +107,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="proformas_pendientes.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Proformas Pendientes">
+                            <a href="proformas_pendientes.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Cotizaciones pendientes">
                                 <div>
                                     <i class="fa-solid fa-inbox me-2"></i> 
-                                    <span>Proformas Pendientes</span>                                    
+                                    <span>Cotizaciones pendientes</span>                                    
                                 </div>
                             </a>
                         </li>
@@ -156,198 +182,346 @@
                         <hr>
                     </div>
                 </div>
-
+            
                 <form class="needs-validation" novalidate>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Sección Información del Cliente -->
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-primary text-white">
-                                    <h5 class="mb-0"><i class="fa-solid fa-user-tie me-2"></i> Información del Cliente</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <label for="nombreCliente" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="nombreCliente" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="email" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" id="email" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="telefono" class="form-label">Teléfono/Celular <span class="text-danger">*</span></label>
-                                            <input type="tel" class="form-control" id="telefono" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="empresa" class="form-label">Empresa/Razón Social</label>
-                                            <input type="text" class="form-control" id="empresa">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="ruc" class="form-label">RUC/DNI</label>
-                                            <input type="text" class="form-control" id="ruc" >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                             <!-- Sección Origen y Destino -->
-                             <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-warning text-dark">
-                                    <h5 class="mb-0"><i class="fa-solid fa-route me-2"></i> Ruta de Transporte</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <h6 class="card-title"><i class="fa-solid fa-ship me-2"></i> Origen <span class="text-danger">*</span></h6>
-                                                    <div class="row g-2">
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="origenPais" placeholder="País" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="origenCiudad" placeholder="Ciudad/Puerto/Aeropuerto" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="origenDireccion" placeholder="Dirección Completa" required>
-                                                        </div>
-                                                        <div class="col-12" id="origenNacionalizacionContainer">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="origenNacionalizacion">
-                                                                <label class="form-check-label" for="origenNacionalizacion">
-                                                                    Requiere nacionalización en origen
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="card-title"><i class="fa-solid fa-map-marker-alt me-2"></i> Destino <span class="text-danger">*</span></h6>
-                                                    <div class="row g-2">
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="destinoPais" placeholder="País" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="destinoCiudad" placeholder="Ciudad/Puerto/Aeropuerto" required>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <input type="text" class="form-control" id="destinoDireccion" placeholder="Dirección Completa" required>
-                                                        </div>
-                                                        <div class="col-12" id="destinoEntregaLocalContainer">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="destinoEntregaLocal">
-                                                                <label class="form-check-label" for="destinoEntregaLocal">
-                                                                    Requiere entrega local en destino
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs mb-4" id="transportTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="aereo-solo-tab" data-bs-toggle="tab" data-bs-target="#aereo-solo" type="button" role="tab">Aéreo Solo Transporte</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="aereo-aduana-tab" data-bs-toggle="tab" data-bs-target="#aereo-aduana" type="button" role="tab">Aéreo con Aduanas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="lcl-solo-tab" data-bs-toggle="tab" data-bs-target="#lcl-solo" type="button" role="tab">LCL Solo Transporte</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="lcl-aduana-tab" data-bs-toggle="tab" data-bs-target="#lcl-aduana" type="button" role="tab">LCL con Aduanas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="fcl-solo-tab" data-bs-toggle="tab" data-bs-target="#fcl-solo" type="button" role="tab">FCL Solo Transporte</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="fcl-aduana-tab" data-bs-toggle="tab" data-bs-target="#fcl-aduana" type="button" role="tab">FCL con Aduanas</button>
+                    </li>
+                  </ul>
                 
-                            <!-- Sección Tipo de Operación -->
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-success text-white">
-                                    <h5 class="mb-0"><i class="fa-solid fa-gears me-2"></i> Tipo de Operación</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tipo de Operación <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="tipoOperacion" required>
-                                                <option value="">Seleccionar...</option>
-                                                <option value="importacion">Importación</option>
-                                                <option value="exportacion">Exportación</option>
-                                                <option value="nacional">Nacional</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Tipo de Servicio <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="tipoServicio" required>
-                                                <option value="">Seleccionar...</option>
-                                                <option value="fcl">FCL (Contenedor Completo)</option>
-                                                <option value="lcl">LCL (Carga Suelta)</option>
-                                                <option value="aereo">Aéreo</option>
-                                                <option value="terrestre">Terrestre</option>
-                                                <option value="multimodal">Multimodal</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Incoterm <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="incoterm" required>
-                                                <option value="">Seleccionar...</option>
-                                                <option>EXW</option>
-                                                <option>FOB</option>
-                                                <option>CIF</option>
-                                                <option>DDP</option>
-                                                <option>DAP</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6" id="zipcodeContainer" style="display:none;">
-                                            <label class="form-label">Zipcode/Código Postal</label>
-                                            <input type="text" class="form-control" id="zipcode">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">¿Requiere Aduanas? <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="requiereAduanas" required>
-                                                <option value="no">No, solo transporte</option>
-                                                <option value="si">Sí, con servicios aduaneros</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <!-- Sección Detalles de la Carga (Dinámica según tipo de servicio) -->
-                            <div class="card shadow-sm mb-4" id="detallesCargaSection">
-                                <div class="card-header bg-info text-white">
-                                    <h5 class="mb-0"><i class="fa-solid fa-boxes-stacked me-2"></i> Detalles de la Carga</h5>
-                                </div>
-                                <div class="card-body" id="detallesCargaBody">
-                                    <!-- Contenido dinámico se insertará aquí según selección -->
-                                </div>
-                            </div>
-                
-                            <!-- Sección Adicionales -->
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-secondary text-white">
-                                    <h5 class="mb-0"><i class="fa-solid fa-gears me-2"></i> Información Adicional</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">Fecha Estimada de Embarque</label>
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">Fecha Límite de Entrega</label>
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="form-label">Observaciones Adicionales</label>
-                                            <textarea class="form-control" rows="2" placeholder="Especificar cualquier requerimiento especial"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <!-- Botón de Envío -->
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-                                <button type="reset" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-2"></i> Limpiar Formulario</button>
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2"></i> Enviar Solicitud</button>
-                            </div>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <!-- Aéreo Solo Transporte -->
+                    <div class="tab-pane active" id="aereo-solo" role="tabpanel" aria-labelledby="aereo-solo-tab">
+                      <h4 class="mb-4">Aéreo Solo Transporte</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="aereoSoloOrigen" class="form-label">Origen (Dirección Completa) o Aeropuerto salida</label>
+                          <input type="text" class="form-control" id="aereoSoloOrigen" required>
                         </div>
+                        <div class="col-md-6">
+                          <label for="aereoSoloDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="aereoSoloDestino" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="aereoSoloCantidad" class="form-label">Cantidad de Pallets o paquetes</label>
+                          <input type="number" class="form-control" id="aereoSoloCantidad" required>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="form-label">Dimensiones (cm)</label>
+                          <div class="row g-2">
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Largo" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Ancho" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Alto" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="aereoSoloPeso" class="form-label">Peso (kg)</label>
+                          <input type="number" class="form-control" id="aereoSoloPeso" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoSoloComodity" class="form-label">Comodity</label>
+                          <input type="text" class="form-control" id="aereoSoloComodity" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoSoloRemontable" class="form-label">Remontable</label>
+                          <select class="form-select" id="aereoSoloRemontable" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
+                
+                    <!-- Aéreo con Aduanas -->
+                    <div class="tab-pane" id="aereo-aduana" role="tabpanel" aria-labelledby="aereo-aduana-tab">
+                      <h4 class="mb-4">Aéreo con Aduanas</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="aereoAduanaOrigen" class="form-label">Origen (Dirección Completa) o Aeropuerto salida</label>
+                          <input type="text" class="form-control" id="aereoAduanaOrigen" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoAduanaDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="aereoAduanaDestino" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="aereoAduanaCantidad" class="form-label">Cantidad de Pallets o paquetes</label>
+                          <input type="number" class="form-control" id="aereoAduanaCantidad" required>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="form-label">Dimensiones (cm)</label>
+                          <div class="row g-2">
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Largo" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Ancho" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Alto" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="aereoAduanaPeso" class="form-label">Peso (kg)</label>
+                          <input type="number" class="form-control" id="aereoAduanaPeso" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoAduanaComodity" class="form-label">Comodity</label>
+                          <input type="text" class="form-control" id="aereoAduanaComodity" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoAduanaValor" class="form-label">Valor de la carga</label>
+                          <input type="number" class="form-control" id="aereoAduanaValor" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoAduanaPermiso" class="form-label">Requiere permiso?</label>
+                          <select class="form-select" id="aereoAduanaPermiso" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="aereoAduanaRemontable" class="form-label">Remontable</label>
+                          <select class="form-select" id="aereoAduanaRemontable" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <!-- LCL Solo Transporte -->
+                    <div class="tab-pane" id="lcl-solo" role="tabpanel" aria-labelledby="lcl-solo-tab">
+                      <h4 class="mb-4">LCL Solo Transporte</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="lclSoloOrigen" class="form-label">Origen (Dirección Completa) o Puerto salida</label>
+                          <input type="text" class="form-control" id="lclSoloOrigen" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclSoloDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="lclSoloDestino" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="lclSoloCantidad" class="form-label">Cantidad de Pallets o paquetes</label>
+                          <input type="number" class="form-control" id="lclSoloCantidad" required>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="form-label">Dimensiones (cm)</label>
+                          <div class="row g-2">
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Largo" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Ancho" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Alto" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="lclSoloPeso" class="form-label">Peso (kg)</label>
+                          <input type="number" class="form-control" id="lclSoloPeso" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclSoloComodity" class="form-label">Comodity</label>
+                          <input type="text" class="form-control" id="lclSoloComodity" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclSoloRemontable" class="form-label">Remontable</label>
+                          <select class="form-select" id="lclSoloRemontable" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <!-- LCL con Aduanas -->
+                    <div class="tab-pane" id="lcl-aduana" role="tabpanel" aria-labelledby="lcl-aduana-tab">
+                      <h4 class="mb-4">LCL con Aduanas</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="lclAduanaOrigen" class="form-label">Origen (Dirección Completa) o Puerto salida</label>
+                          <input type="text" class="form-control" id="lclAduanaOrigen" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclAduanaDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="lclAduanaDestino" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="lclAduanaCantidad" class="form-label">Cantidad de Pallets o paquetes</label>
+                          <input type="number" class="form-control" id="lclAduanaCantidad" required>
+                        </div>
+                        <div class="col-md-8">
+                          <label class="form-label">Dimensiones (cm)</label>
+                          <div class="row g-2">
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Largo" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Ancho" required>
+                            </div>
+                            <div class="col-4">
+                              <input type="number" class="form-control" placeholder="Alto" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="lclAduanaPeso" class="form-label">Peso (kg)</label>
+                          <input type="number" class="form-control" id="lclAduanaPeso" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclAduanaComodity" class="form-label">Comodity</label>
+                          <input type="text" class="form-control" id="lclAduanaComodity" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclAduanaValor" class="form-label">Valor de la carga</label>
+                          <input type="number" class="form-control" id="lclAduanaValor" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclAduanaPermiso" class="form-label">Requiere permiso?</label>
+                          <select class="form-select" id="lclAduanaPermiso" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lclAduanaRemontable" class="form-label">Remontable</label>
+                          <select class="form-select" id="lclAduanaRemontable" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <!-- FCL Solo Transporte -->
+                    <div class="tab-pane" id="fcl-solo" role="tabpanel" aria-labelledby="fcl-solo-tab">
+                      <h4 class="mb-4">FCL Solo Transporte</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="fclSoloOrigen" class="form-label">Origen (Dirección Completa) o Puerto salida</label>
+                          <input type="text" class="form-control" id="fclSoloOrigen" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclSoloDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="fclSoloDestino" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclSoloTipoContenedor" class="form-label">Tipo contenedor</label>
+                          <select class="form-select" id="fclSoloTipoContenedor" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="20">20' Standard</option>
+                            <option value="40">40' Standard</option>
+                            <option value="40hc">40' High Cube</option>
+                            <option value="45hc">45' High Cube</option>
+                            <option value="20rf">20' Reefer</option>
+                            <option value="40rf">40' Reefer</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclSoloCommodity" class="form-label">Commodity</label>
+                          <input type="text" class="form-control" id="fclSoloCommodity" required>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <!-- FCL con Aduanas -->
+                    <div class="tab-pane" id="fcl-aduana" role="tabpanel" aria-labelledby="fcl-aduana-tab">
+                      <h4 class="mb-4">FCL con Aduanas</h4>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="fclAduanaOrigen" class="form-label">Origen (Dirección Completa) o Puerto salida</label>
+                          <input type="text" class="form-control" id="fclAduanaOrigen" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclAduanaDestino" class="form-label">Destino</label>
+                          <input type="text" class="form-control" id="fclAduanaDestino" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclAduanaTipoContenedor" class="form-label">Tipo contenedor</label>
+                          <select class="form-select" id="fclAduanaTipoContenedor" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="20">20' Standard</option>
+                            <option value="40">40' Standard</option>
+                            <option value="40hc">40' High Cube</option>
+                            <option value="45hc">45' High Cube</option>
+                            <option value="20rf">20' Reefer</option>
+                            <option value="40rf">40' Reefer</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="fclAduanaCommodity" class="form-label">Commodity</label>
+                          <input type="text" class="form-control" id="fclAduanaCommodity" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="fclAduanaValor" class="form-label">Valor de la carga</label>
+                          <input type="number" class="form-control" id="fclAduanaValor" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="fclAduanaAnticipado" class="form-label">Anticipado</label>
+                          <select class="form-select" id="fclAduanaAnticipado" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="fclAduanaRedestino" class="form-label">Redestino</label>
+                          <select class="form-select" id="fclAduanaRedestino" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label for="fclAduanaPermisos" class="form-label">Permisos</label>
+                          <select class="form-select" id="fclAduanaPermisos" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <hr class="my-4">
+                
+                  <button class="w-100 btn btn-primary btn-lg" type="submit">Enviar Solicitud</button>
                 </form>
             </div>
         </div>
