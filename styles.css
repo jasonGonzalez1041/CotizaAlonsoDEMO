@@ -8,6 +8,14 @@ body {
   font-weight: bold;
 }
 
+.no_padding {
+  padding: 0 !important;
+}
+
+.no_margin {
+  margin: 0 !important;
+}
+
 .sidebar {
   background-color: #ffffff;
   color: #000000;
@@ -395,4 +403,30 @@ body > nav {
   font-size: 1.2rem;
   margin-right: 12px;
   flex-shrink: 0;
+}
+
+/* Reduce el tamaño general del contenedor de presupuesto */
+#presupuesto, #cotizacion{
+  font-size: 0.8rem;
+}
+
+/* Ajusta el tamaño del logo */
+#presupuesto img {
+  width: 200px !important;
+}
+
+/* Reduce el tamaño de los encabezados */
+#presupuesto h4, 
+#presupuesto h5 {
+  font-size: 0.8rem;
+}
+
+/* Ajusta el tamaño de las tablas */
+#presupuesto .table {
+  font-size: 0.7rem;
+}
+
+/* Opcional: ajusta el padding para mantener la proporción */
+#presupuesto .p-2 {
+  padding: 0.3rem !important;
 }

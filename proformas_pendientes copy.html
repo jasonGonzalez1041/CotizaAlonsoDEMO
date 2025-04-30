@@ -226,7 +226,7 @@
                         <div class="proforma-item priority-high">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h5 class="mb-2">Cotización #ALO 181-04-2025</h5>
+                                    <h5 class="mb-2">Cotización #ALO 184-04-2025</h5>
                                     <p class="mb-1"><strong>Cliente:</strong> DICOMA S.A.</p>
                                     <p class="mb-1"><strong>Servicio:</strong> Transporte internacional</p>
                                     <p class="mb-1"><small class="text-muted">Generado: Hoy 10:45 AM</small></p>
@@ -368,7 +368,7 @@
                                         <button class="nav-link active" id="presupuesto-tab" data-bs-toggle="tab" data-bs-target="#presupuesto" type="button" role="tab" aria-controls="presupuesto" aria-selected="true">Presupuesto</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="cotizacion-tab" data-bs-toggle="tab" data-bs-target="#cotizacion" type="button" role="tab" aria-controls="cotizacion" aria-selected="true">Cotización</button>
+                                        <button class="nav-link active" id="cotizacion-tab" data-bs-toggle="tab" data-bs-target="#cotizacion" type="button" role="tab" aria-controls="cotizacion" aria-selected="true">Cotización</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview" type="button" role="tab" aria-controls="preview" aria-selected="false">Vista Previa</button>
@@ -799,7 +799,7 @@
 
                                     </div>
 
-                                    <div class="tab-pane fade " id="cotizacion" role="tabpanel" aria-labelledby="cotizacion-tab">
+                                    <div class="tab-pane fade show active" id="cotizacion" role="tabpanel" aria-labelledby="cotizacion-tab">
                                         <div class="container-fluid">
                                             <!-- Header with logo and info -->
                                             <div class="row mb-3">
@@ -1058,6 +1058,48 @@
                                             <h4>Estimado Cliente DICOMA S.A.,</h4>
                                             <p>Esperamos que se encuentre bien. Adjunto enviamos la Cotización solicitada para los servicios de transporte internacional según lo conversado.</p>
                                            
+                                            <div class="well">
+                                                <h4>Detalles de la Cotización #ALO 184-04-2025:</h4>
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                        <th>Servicio</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio Unitario</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transporte Internacional (Madrid-Lima)</td>
+                                                        <td>1</td>
+                                                        <td>$3,500.00</td>
+                                                        <td>$3,500.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>THC</td>
+                                                        <td>1</td>
+                                                        <td>$850.00</td>
+                                                        <td>$850.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Gastos Naviera</td>
+                                                        <td>1</td>
+                                                        <td>$450.00</td>
+                                                        <td>$450.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">Subtotal:</th>
+                                                        <td>$4,800.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">IVA (18%):</th>
+                                                        <td>$864.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="3" class="text-end">Total:</th>
+                                                        <td><strong>$5,664.00</strong></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
                                             <p>Esta Cotización tiene una validez de 15 días calendario. Para cualquier consulta adicional no dude en contactarnos.</p>
                                            
                                             <p>Saludos cordiales,</p>
@@ -1075,13 +1117,12 @@
                                                     <div><i class="fa-solid fa-file-pdf me-2"></i> Cotización_ALO 184-04-2025.pdf</div>
                                                     <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye me-1"></i> Ver</button>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center" id="tarifarios_aduanas">
-                                                    <div><i class="fa-solid fa-file-excel me-2"></i> Tarifarios_aduanas.xlsx</div>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div><i class="fa-solid fa-file-excel me-2"></i> Desglose_Costos.xlsx</div>
                                                     <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-eye me-1"></i> Ver</button>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-success me-2" id="btn_attach_tarifario"><i class="fa-solid fa-check me-1"></i> Adjuntar Tarifarios de aduanas</button>
                                     </div>
 
                                     <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">

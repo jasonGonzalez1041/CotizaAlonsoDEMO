@@ -217,4 +217,45 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   renderNotifications();
+  // Obtener referencias a los elementos
+  const btnAttachTarifario = document.getElementById("btn_attach_tarifario");
+  const tarifarioItem = document.getElementById("tarifarios_aduanas");
+
+  // Verificar que los elementos existen
+  if (btnAttachTarifario && tarifarioItem) {
+    // Variable para mantener el estado actual
+    let isVisible = false;
+
+    // Ocultar el elemento tarifarios_aduanas al inicio
+    tarifarioItem.classList.add("d-none");
+
+    // Agregar el evento click al botón
+    btnAttachTarifario.addEventListener("click", function () {
+      // Cambiar estado
+      isVisible = !isVisible;
+
+      // Actualizar visualización según el estado
+      if (isVisible) {
+        // Mostrar el elemento
+        tarifarioItem.classList.remove("d-none");
+        // Cambiar el estilo del botón a activo
+        btnAttachTarifario.classList.remove("btn-success");
+        btnAttachTarifario.classList.add("btn-secondary");
+        // Cambiar el ícono y texto
+        btnAttachTarifario.innerHTML =
+          '<i class="fa-solid fa-times me-1"></i> Quitar Tarifarios de aduanas';
+      } else {
+        // Ocultar el elemento
+        tarifarioItem.classList.add("d-none");
+        // Cambiar el estilo del botón a inactivo
+        btnAttachTarifario.classList.remove("btn-secondary");
+        btnAttachTarifario.classList.add("btn-success");
+        // Restaurar ícono y texto
+        btnAttachTarifario.innerHTML =
+          '<i class="fa-solid fa-check me-1"></i> Adjuntar Tarifarios de aduanas';
+      }
+    });
+  } else {
+    console.error("No se encontraron los elementos necesarios");
+  }
 });
