@@ -11,30 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para manejar el comportamiento del sidebar según el ancho de la ventana
   function handleSidebar() {
-    if (window.innerWidth <= 768) {
-      // En dispositivos móviles, siempre colapsado
-      sidebarToggle.classList.add("hidden");
-      sidebar.classList.add("collapsed");
+    const isMobile = window.innerWidth <= 768;
+    sidebarToggle.classList.toggle('hidden', isMobile);
+    
+    if (!isMobile) {
+      const sidebarState = localStorage.getItem("sidebarState");
+      const isCollapsed = sidebarState === "collapsed";
+      sidebar.classList.toggle("collapsed", isCollapsed);
+      
       if (toggleIcon) {
-        toggleIcon.classList.remove("fa-chevron-left");
-        toggleIcon.classList.add("fa-chevron-right");
+        toggleIcon.classList.toggle("fa-chevron-left", !isCollapsed);
+        toggleIcon.classList.toggle("fa-chevron-right", isCollapsed);
       }
     } else {
-      // En dispositivos de escritorio, recuperar estado guardado
-      const sidebarState = localStorage.getItem("sidebarState");
-      sidebarToggle.classList.remove("hidden");
-      if (sidebarState === "collapsed") {
-        sidebar.classList.add("collapsed");
-        if (toggleIcon) {
-          toggleIcon.classList.remove("fa-chevron-left");
-          toggleIcon.classList.add("fa-chevron-right");
-        }
-      } else {
-        sidebar.classList.remove("collapsed");
-        if (toggleIcon) {
-          toggleIcon.classList.remove("fa-chevron-right");
-          toggleIcon.classList.add("fa-chevron-left");
-        }
+      sidebar.classList.add("collapsed");
+      if (toggleIcon) {
+        toggleIcon.classList.replace("fa-chevron-left", "fa-chevron-right");
       }
     }
   }
